@@ -1,0 +1,47 @@
+# Metal Whisker Modeling
+
+## Project summary
+### One-sentence description of the project
+TODO: A 20-second elevator pitch of your project - its core idea summarized in one
+sentence.
+
+### Additional information about the project
+TODO: Write a compelling/creative/informative project description / summary
+
+## Installation
+
+### Prerequisites
+* Unity (version 2021.3.21f1 or newer)
+
+### Add-ons
+TODO: List which add-ons are included in the project, and the purpose each add-on
+serves in your app.
+
+### Installation Steps
+* Clone the repository with 'git clone https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-.git'
+* Using Unity open folder 'Tin Whisker POC' from the cloned repository.
+  
+## Functionality
+TODO: Write usage instructions. Structuring it as a walkthrough can help structure
+this section,
+and showcase your features.
+
+## Known Problems
+TODO: Describe any known issues, bugs, odd behaviors or code smells.
+Provide steps to reproduce the problem and/or name a file or a function where the
+problem lives.
+
+## Contributing
+TODO: Leave the steps below if you want others to contribute to your project.
+1. Fork it!
+2. Create your feature branch: `git checkout -b my-new-feature`
+3. Commit your changes: `git commit -am 'Add some feature'`
+4. Push to the branch: `git push origin my-new-feature`
+5. Submit a pull request :D
+
+## Additional Documentation
+TODO: Provide links to additional documentation that may exist in the repo, e.g.,
+* Sprint reports
+* User links
+## License
+* [LICENSE](LICENSE.txt)

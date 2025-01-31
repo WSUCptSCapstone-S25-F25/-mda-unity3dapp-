@@ -2,13 +2,13 @@
 
 ## Project summary
 ### One-sentence description of the project
-TODO: A 20-second elevator pitch of your project - its core idea summarized in one
-sentence.
+This project involves developing a software tool that enables users to import a 3D model of a printed circuit board (PCB), detect its exposed conductors, simulate the impact of a storm of dislodged metal whiskers on the PCB, and analyze the resulting data.
 
 ### Additional information about the project
-TODO: Write a compelling/creative/informative project description / summary
+Demo currently: ![image](https://github.com/user-attachments/assets/d027bac4-f328-45ee-bd14-6d756e8724a9)
 
 ## Installation
+
 
 ### Prerequisites
 * Unity (version 2021.3.21f1 or newer)

@@ -12,23 +12,23 @@ Issue 8 was an issue that was marked while our team still has not fully grasped 
 ## Completed Issues/User Stories
 Here are links to the issues that we completed in this sprint:
 
- * https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/3 
- * https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/4 
- * https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/5 
- * https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/6 
+ * Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/3: Move old repo to this repo
+ * Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/4: Finish and upload current project description draft
+ * Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/5: Create and upload client meet hours.
+ * Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/6: Update readme.md
 
 No story points were awarded for documentation tasks.
  
  ## Incomplete Issues/User Stories
  Here are links to issues we worked on but did not complete in this sprint:
  
-* Issue 7: [https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/7] 
-* Issue 8: [https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/8] 
+* Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/7: Read up on documentation and demo the current code
+* Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/8: Compiling on newest version of Unity leads to errors
 
 Explanation of incomplete issues:
 
-* Issue 7 references the team’s need to understand the work of the preceding teams; this issue will be resolved before Sprint 2.
-* Issue 8 references the program’s incompatibility with the most recent version of Unity; this may be worked on in the future.We have yet to understand the codebase. 
+* Issue 7 will be resolved before Sprint 2; documentation and codebase are extensive.
+* Issue 8 cannot be worked on yet; we have yet to understand the codebase. 
 
 ## Code Files for Review
 For this sprint we didn’t get to work on any code files, all code files were cloned from the previous repository and can be found in https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-.git. 

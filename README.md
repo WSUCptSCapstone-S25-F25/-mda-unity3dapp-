@@ -15,6 +15,7 @@ Download the executable file for Windows or Mac and run (found here on GitHub un
 * Unity (version 2021.3.21f1 or newer)
 Installation Steps (Developer)
 * Clone the repository with 'git clone https://github.com/WSUCptSCapstone-S24-F24/-mda-unity3dapp-.git'
+* Install Unity Hub from <a href=https://unity.com/download target="_blank" rel="noopener noreferrer">this link</a>
 * Open Unity Hub and click on 'Add'
 * Navigate to the folder with the cloned repository and find and open the folder labeled 'Tin Whisker POC'
 

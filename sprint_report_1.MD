@@ -7,7 +7,7 @@
 The primary goal of this sprint is documentation completion and github repo initialization. The readme.MD, project description, client meeting hours, were added to the repo; the preceding team’s work was moved to the current repository from this link: https://github.com/WSUCptSCapstone-S24-F24/-mda-unity3dapp-. Our team is currently researching work on the metal whisker modeling project. Team cohesion needs to improve slightly. The liaison for this sprint could have done better in distributing the workload.
 
 ## Unfinished Work
-Issue 8 was an issue that was marked while our team still has not fully grasped the code base; our team may work on this in the future. Issue number 7 has been partially completed; the team, however, needs more time. This issue will be completed prior to the next sprint.
+Issue 8 was an issue that was marked while our team still has not fully grasped the code base; our team may work on this in the future.
 
 ## Completed Issues/User Stories
 Here are links to the issues that we completed in this sprint:
@@ -22,12 +22,9 @@ No story points were awarded for documentation tasks.
  ## Incomplete Issues/User Stories
  Here are links to issues we worked on but did not complete in this sprint:
  
-* Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/7: Read up on documentation and demo the current code
 * Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/8: Compiling on newest version of Unity leads to errors
 
 Explanation of incomplete issues:
-
-* Issue 7 will be resolved before Sprint 2; documentation and codebase are extensive.
 * Issue 8 cannot be worked on yet; we have yet to understand the codebase. 
 
 ## Code Files for Review

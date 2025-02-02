@@ -34,9 +34,6 @@ Analyze Results: Record and analyze data from the simulation to assess the poten
 
 The tool is intended to assist engineers and researchers in understanding and mitigating the risks associated with metal whiskers in electronic systems. It provides a user-friendly interface for running simulations and visualizing outcomes, making it a valuable resource for studying this phenomenon.
 
-## Known Problems
-Currently, the Monte Carlo simulation isn't properly adding a storm of whiskers.
-
 ## Contributing
 1. Fork it!
 2. Create your feature branch: `git checkout -b my-new-feature`

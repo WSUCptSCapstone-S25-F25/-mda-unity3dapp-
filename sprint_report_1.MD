@@ -46,4 +46,5 @@ Here's what we'd like to improve:
 Here are changes we plan to implement in the next sprint:
    * Have a better distribution of the work
 
-# Sprint Report Video: [TODO]
+# Sprint Report Video:
+   * https://youtu.be/qQxRlV8g8Xo?si=OmhjRMvhzaj62hNT 

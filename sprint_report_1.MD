@@ -44,4 +44,4 @@ Here are changes we plan to implement in the next sprint:
    * Have a better distribution of the work
 
 # Sprint Report Video:
-   * https://youtu.be/qQxRlV8g8Xo?si=OmhjRMvhzaj62hNT 
+   * https://youtu.be/e7x2irwgqp8

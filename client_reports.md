@@ -70,3 +70,23 @@ Mr. Jay Brusse asked to set up a second meeting to further inform our team of ti
 <h2>Minutes</h2>
 <p> In this meeting we discuss with our mentor Jay about how we could improve GPU acceleration in the app, he gave us some insights based on what he knew and what the previous team suggested, he also encouraged us to reach out to them for further details. Dr. Havrisik started giving some insights about the client requirements but her connection wasn’t the best, then she lost connection and we didn’t get much unfortunately. Mr. Wells mentioned he wasn’t involved as much with the previous team and that we had to review our requirements rankings with Dr. Havrisik.
  </p>
+
+<h2>Retrospective Summary</h2>
+<h3>This went well:</h3>
+<ul>
+  <li>Got some information to start working in requirements section. </li>
+  <li>Getting to know more about our long-term goals </li>
+</ul>
+ 
+<h3>This needs improvement:</h3>
+<ul>
+  <li>Understanding how we can improve GPU acceleration in Unity. </li>
+    <li>Understanding the requirements ranking. </li>
+  <li>Understanding the solution approach. </li>
+</ul>
+ 
+<h3>Changes to implement ASAP:</h3>
+<ul>
+  <li>Reach to previous team for clarification regarding GPU acceleration. </li>
+<li> Email and ask Dr. Havrisik for more information about the requirements and the priority rankings.
+</ul>

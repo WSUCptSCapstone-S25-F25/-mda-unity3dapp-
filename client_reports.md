@@ -59,3 +59,14 @@ Mr. Jay Brusse asked to set up a second meeting to further inform our team of ti
   <li>Brush up on statistical concepts.</li>
   <li>Dive into preceding team's work.</li>
 </ul>
+
+<h2>Agenda (<em>2/4/2025</em>)</h2>
+<ul>
+  <li>Improvements of the application</li>
+  <li> Client requirements</li>
+  <li>Ranking the project requirements based on priority level</li>
+</ul>
+ 
+<h2>Minutes</h2>
+<p> In this meeting we discuss with our mentor Jay about how we could improve GPU acceleration in the app, he gave us some insights based on what he knew and what the previous team suggested, he also encouraged us to reach out to them for further details. Dr. Havrisik started giving some insights about the client requirements but her connection wasn’t the best, then she lost connection and we didn’t get much unfortunately. Mr. Wells mentioned he wasn’t involved as much with the previous team and that we had to review our requirements rankings with Dr. Havrisik.
+ </p>

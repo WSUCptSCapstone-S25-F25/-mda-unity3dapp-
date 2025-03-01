@@ -161,3 +161,46 @@ Mr. Jay Brusse asked to set up a second meeting to further inform our team of ti
 <li> Lower priority on GPU acceleration and focus on other requirements
 </ul>
 
+<h2>Agenda (<em>2/28/2025</em>)</h2>
+
+<ul>
+  <li>Jay demonstrates an Excel program for generating reports on the app.</li>
+  <li>Discussion on benchmarking our program.</li>
+  <li>Update from Stephen regarding a colleague who can assist with PCB file education.</li>
+  <li>Progress update on the app development.</li>
+</ul>
+
+<h2>Minutes</h2>
+
+<p>NASA subject matter expert Mr. Jay Brusse and government sponsor at MDA Mr. Stephen Wells met with our team, Ram Logic. Dr. Donna Havrisik was absent. Mr. Jay Brusse demonstrated an Excel program he developed to generate reports on the app's performance and data analysis. He emphasized the importance of benchmarking our program to ensure it meets performance standards and aligns with project goals. Mr. Stephen Wells provided an update on a colleague who could assist in educating the team on PCB files, but he encouraged the team to continue making progress on the app even without a full understanding of PCB files at this stage.</p>
+
+<h2>Retrospective Summary</h2>
+
+<h3>This went well:</h3>
+
+<ul>
+  <li>Jay's Excel program demonstration was clear and provided a useful tool for generating reports on the app.</li>
+  <li>Stephen's update on potential educational support for PCB files was helpful and forward-looking.</li>
+</ul>
+
+<h3>This needs improvement:</h3>
+
+<ul>
+  <li>Further clarification on the benchmarking process and specific metrics to focus on.</li>
+  <li>Continued progress on the app development despite the lack of full understanding of PCB files.</li>
+</ul>
+
+<h3>Changes to implement ASAP:</h3>
+
+<ul>
+  <li>Begin benchmarking our program using the metrics and standards discussed during the meeting.</li>
+  <li>Continue app development efforts, focusing on areas that do not require in-depth knowledge of PCB files.</li>
+</ul>
+
+<h2>Agenda (<em>Next Meeting</em>)</h2>
+
+<ul>
+  <li>Review benchmarking results and discuss any necessary adjustments.</li>
+  <li>Update on app development progress.</li>
+  <li>Further discussion on PCB file education and potential collaboration with Stephen's colleague.</li>
+</ul>

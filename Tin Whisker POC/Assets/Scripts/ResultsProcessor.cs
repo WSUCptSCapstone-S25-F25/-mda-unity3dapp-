@@ -267,6 +267,11 @@ public class ResultsProcessor : MonoBehaviour
         // Define the path where you want to save the results
         string directoryPath = Path.Combine(Application.dataPath, "..", "SimulationResults");
 
+        if (!Directory.Exists(directoryPath))
+        {
+            Directory.CreateDirectory(directoryPath);
+        }
+
         // Calculate results
         List<Dictionary<(string, string), int>> fullPerSimBridgeCounts = new List<Dictionary<(string, string), int>>();
         Dictionary<(string, string), int> pairBridgeCounts = new Dictionary<(string, string), int>();
@@ -319,9 +324,9 @@ public class ResultsProcessor : MonoBehaviour
 
         int numBuckets = (int)Math.Sqrt(numBridges.Count);
         numBuckets = Math.Max(1, numBuckets); 
-        int min = numBridges.Min();
-        int max = numBridges.Max();
-        int bucketWidth = (int)Math.Ceiling((double)(max - min) / numBuckets);
+        int min = Math.Max(0, numBridges.Min());
+        int max = Math.Max(0, numBridges.Max());
+        int bucketWidth = Math.Max(1, (int)Math.Ceiling((double)(max - min) / numBuckets));
         int[] buckets = new int[numBuckets];
         foreach (int value in numBridges)
         {

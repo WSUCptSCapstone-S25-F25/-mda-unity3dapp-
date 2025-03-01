@@ -130,9 +130,34 @@ Mr. Jay Brusse asked to set up a second meeting to further inform our team of ti
   <li>Continue researching alternative automated methods for identifying metallic components.</li>  
 </ul>  
 
-<h2>Agenda (<em>Next Meeting</em>)</h2>  
-<ul>  
-  <li>Discuss progress on optimizing Unity’s built-in physics and UI performance.</li>  
-  <li>Review initial prototype for PCB conductive part identification.</li>  
-  <li>Finalize project priorities and next steps.</li>  
-</ul>  
+<h2>Agenda (<em>2/18
+/2025</em>)</h2>
+<ul>
+  <li>Discuss progress on optimizing Unity’s built-in physics and UI performance.</li>
+  <li>Review initial prototype for PCB conductive part identification</li>
+  <li>Finalize project priorities and next steps.</li>
+</ul>
+ 
+<h2>Minutes</h2>
+<p> For this short meeting Dr. Havrisk was absent, Mr. Jay and Mr. Stephen attended our meeting to discuss possible solutions to optimize Unity’s physics engine and improve the app performance. Mr. Stephen suggested that if we believe that improving GPU acceleration might be too challenging or that it will take more time then we have, we should consider discarding it since it was suggested by the previous team and not necessarily required from them. We also discussed about different types of CAD files and how we could use some of these types of files to detect conductive materials, Jay suggested that we should try to talk to someone that is expert building/designing CAD files and obtain more information about what files could be of use for automation of conductive materials. Also, Mr. Steven offered to ask an expert in CAD and try to set a meeting with this person for us, so we can ask questions and gain some insights on how to proceed with automation of conductive materials. </p>
+<h2>Retrospective Summary</h2>
+<h3>This went well:</h3>
+<ul>
+  <li>Gained insights about how to proceed if GPU acceleration is out of range.  </li>
+  <li>Discuss with client about possible CAD files that we could use to detect conductive materials.</li>
+ <li> Got suggestions about who we should ask to inform ourselves more about CAD files.</li>
+</ul>
+ 
+<h3>This needs improvement:</h3>
+<ul>
+  <li>Research more about different CAD files that the app could support. </li>
+  <li>Understanding how we can do automation of conductive materials . </li>
+  
+</ul>
+ 
+<h3>Changes to implement ASAP:</h3>
+<ul>
+  <li>Reach out to Dr. Havrisik to clarify if we need to include a mockup design</li>
+<li> Lower priority on GPU acceleration and focus on other requirements
+</ul>
+

@@ -49,19 +49,26 @@ Please review the following code files, which were actively developed during thi
 
  
 ## Retrospective Summary
+
 What Went Well:
-Debugging efforts significantly improved application stability, especially for Monte Carlo simulations.
-Implementing prototype GPU acceleration was a major step toward performance improvements.
-The team's ability to systematically track and rank bugs allowed for effective prioritization.
-Research into GPU physics provided insights into potential future optimizations.
+
+* Debugging efforts significantly improved application stability, especially for Monte Carlo simulations.
+* Implementing prototype GPU acceleration was a major step toward performance improvements.
+* The team's ability to systematically track and rank bugs allowed for effective prioritization.
+* Research into GPU physics provided insights into potential future optimizations.
+
 What Needs Improvement:
-Time estimation for research-heavy tasks (e.g., GPU physics report) needs better scoping.
-More structured collaboration on documentation to ensure consistency across sections.
-Further refinement of benchmarking strategies to better measure GPU acceleration benefits.
+
+* Time estimation for research-heavy tasks (e.g., GPU physics report) needs better scoping.
+* More structured collaboration on documentation to ensure consistency across sections.
+* Further refinement of benchmarking strategies to better measure GPU acceleration benefits.
+
 Changes to Implement in the Next Sprint:
-Complete and finalize the report on GPU physics benefits, incorporating expert feedback.
-Expand performance benchmarking to gather more detailed insights.
-Improve documentation workflows to streamline writing and revisions.
-Continue refining the Monte Carlo simulation to ensure numerical stability.
+
+* Complete and finalize the report on GPU physics benefits, incorporating expert feedback.
+* Expand performance benchmarking to gather more detailed insights.
+* Improve documentation workflows to streamline writing and revisions.
+* Continue refining the Monte Carlo simulation to ensure numerical stability.
 
 # Sprint Report Video:
+* 

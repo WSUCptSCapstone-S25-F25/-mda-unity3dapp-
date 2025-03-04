@@ -25,14 +25,14 @@ To ensure proper tracking of this unfinished work:
 ## Completed Issues/User Stories
 Here are links to the issues that we completed in this sprint:
  
- * Issue #8: Compiling the newest version of Unity leads to errors.
- * Issue #12: Revise project description section of the report.
- * Issue #13: Complete and upload requirements and specifications.
- * Issue #14: Update client hours report.
- * Issue #15: Revise requirements and specification sections.
- * Issue #16: Complete and upload solution approach section.
- * Issue #19: Monte Carlo simulation pauses the whole program upon completion.
- * Issue #20: Experimental GPU physics simulator.
+ * Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/8: Compiling the newest version of Unity leads to errors.
+ * Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/12: Revise project description section of the report.
+ * Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/13: Complete and upload requirements and specifications.
+ * Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/14: Update client hours report.
+ * Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/15: Revise requirements and specification sections.
+ * Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/16: Complete and upload solution approach section.
+ * Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/19: Monte Carlo simulation pauses the whole program upon completion.
+ * Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/20: Experimental GPU physics simulator.
  
  ## Incomplete Issues/User Stories
  Here are links to issues we worked on but did not complete in this sprint:

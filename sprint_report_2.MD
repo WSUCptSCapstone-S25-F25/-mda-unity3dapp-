@@ -37,14 +37,14 @@ Here are links to the issues that we completed in this sprint:
  ## Incomplete Issues/User Stories
  Here are links to issues we worked on but did not complete in this sprint:
  
- * Issue [#22] (https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/22): Generate report on benefits of GPU physics.  <<We need to contact experts and consult on the issues of whether or not certain features are needed or how much we need to scale the application>>
+ * Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/22: Generate report on benefits of GPU physics.  <<We need to contact experts and consult on the issues of whether or not certain features are needed or how much we need to scale the application>>
 
- * Issue [#23] (): Hover in End simulation button won't leave mouse and won't let run monte carlo.  <<We are able to disable the hover but we haven’t figure out how to make it visible only before clicking the button. >>
+ * Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/23: Hover in End simulation button won't leave mouse and won't let run monte carlo.  <<We are able to disable the hover but we haven’t figure out how to make it visible only before clicking the button. >>
 
 ## Code Files for Review
 Please review the following code files, which were actively developed during this sprint, for quality:
- * [warp_implementation](https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/tree/main/warp_implementation)
- * [ResultsProcessor.cs] (https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/blob/main/Tin%20Whisker%20POC/Assets/Scripts/ResultsProcessor.cs)
+ * warp_implementation https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/tree/main/warp_implementation
+ * ResultsProcessor.cs https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/blob/main/Tin%20Whisker%20POC/Assets/Scripts/ResultsProcessor.cs
 
 
  

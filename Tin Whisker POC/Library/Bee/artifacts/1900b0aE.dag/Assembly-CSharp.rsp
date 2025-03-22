@@ -118,6 +118,7 @@
 -define:CSHARP_7_3_OR_NEWER
 -r:"Assets/Asset Packages/StandAloneFileBrowser/Assets/Plugins/Ookii.Dialogs.dll"
 -r:"Assets/Asset Packages/StandAloneFileBrowser/Assets/Plugins/System.Windows.Forms.dll"
+-r:"C:/DOCS/SPRING 2025/CPTS 421/ProjectCopy2/-mda-unity3dapp-/Tin Whisker POC/Library/PackageCache/com.unity.visualscripting@1.8.0/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2021.3.21f1/Editor/Data/Managed/UnityEngine/UnityEditor.CoreModule.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2021.3.21f1/Editor/Data/Managed/UnityEngine/UnityEditor.DeviceSimulatorModule.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2021.3.21f1/Editor/Data/Managed/UnityEngine/UnityEditor.DiagnosticsModule.dll"
@@ -322,7 +323,6 @@
 -r:"C:/Program Files/Unity/Hub/Editor/2021.3.21f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Xml.XPath.XDocument.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2021.3.21f1/Editor/Data/NetStandard/Extensions/2.0.0/System.Runtime.InteropServices.WindowsRuntime.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2021.3.21f1/Editor/Data/NetStandard/ref/2.1.0/netstandard.dll"
--r:"D:/DOCS/SPRING2025/CPTS 421/CapsProject/-mda-unity3dapp-/Tin Whisker POC/Library/PackageCache/com.unity.visualscripting@1.8.0/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.PlasticSCM.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.Rider.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.TextMeshPro.Editor.ref.dll"

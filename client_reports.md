@@ -204,5 +204,71 @@ Mr. Jay Brusse asked to set up a second meeting to further inform our team of ti
   <li>Update on app development progress.</li>
   <li>Further discussion on PCB file education and potential collaboration with Stephen's colleague.</li>
 </ul>
+<h2>Agenda (<em>3/4/2025</em>)</h2>
+<ul>
+  <li>Update on Stephen’s colleague for PCB file education.</li>
+  <li>Review of Sprint 2 progress.</li>
+</ul>
+
+<h2>Minutes</h2>
+<p>Government sponsor at MDA Mr. Stephen Wells met with our team, Ram Logic. Dr. Donna Havrisik and Mr. Jay Brusse were absent. Mr. Wells provided an update on a colleague who could assist with PCB file education but mentioned a delay in availability. In the meantime, the team decided to research PCB basics independently to ensure progress. Sprint 2 progress was reviewed, focusing on UI improvements and core functionality, both of which were reported to be on track.</p>
+
+<h2>Retrospective Summary</h2>
+
+<h3>This went well:</h3>
+<ul>
+  <li>Received clear feedback from Stephen regarding Sprint 2.</li>
+</ul>
+
+<h3>This needs improvement:</h3>
+<ul>
+  <li>Expedite plans for PCB training to avoid delays in development.</li>
+</ul>
+
+<h3>Changes to implement ASAP:</h3>
+<ul>
+  <li>Document Sprint 2 outcomes for future reference.</li>
+  <li>Follow up on the timeline for PCB training.</li>
+</ul>
+
+<h2>Agenda (<em>3/11/2025</em>)</h2>
+<ul>
+  <li>Confirm Sprint 3 progress during check-in.</li>
+</ul>
+
+<h2>Minutes</h2>
+<p>This was a brief check-in meeting, due to Spring Break. The team confirmed that there were no blockers and that Sprint 3 progress was proceeding as planned.</p>
+
+<h2>Agenda (<em>3/18/2025</em>)</h2>
+<ul>
+  <li>Review of Altium processor parsing and rendering in Unity.</li>
+</ul>
+
+<h2>Minutes</h2>
+<p>NASA subject matter expert Mr. Jay Brusse, government sponsor at MDA Mr. Stephen Wells, and the Ram Logic Team attended the meeting. Dr. Donna Havrisik was absent. Mr. Brusse provided a detailed technical review of the requirements for integrating Altium data into Unity. The team asked clarifying questions to better understand the scope of the task. Mr. Wells emphasized the importance of ensuring that all developments align with NASA/MDA standards.</p>
+
+<h2>Retrospective Summary</h2>
+
+<h3>This went well:</h3>
+<ul>
+  <li>Received thorough technical guidance from Mr. Brusse regarding Altium-Unity integration.</li>
+</ul>
+
+<h3>This needs improvement:</h3>
+<ul>
+  <li>Establish clearer milestones and a structured timeline for Unity implementation.</li>
+</ul>
+
+<h3>Changes to implement ASAP:</h3>
+<ul>
+  <li>Draft a workflow for Altium-Unity integration.</li>
+  <li>Schedule a follow-up session with Mr. Brusse to address any outstanding questions.</li>
+</ul>
+
+<h2>Agenda (<em>Next Meeting – 3/25/2025</em>)</h2>
+<ul>
+  <li>Review the drafted Altium-Unity integration workflow.</li>
+  <li>Prepare for Sprint 3 demo.</li>
+</ul>
 
 

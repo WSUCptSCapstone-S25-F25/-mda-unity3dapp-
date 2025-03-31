@@ -20,9 +20,17 @@ Before exporting, I researched the STEP file format to ensure compatibility with
 
 ![image](https://github.com/user-attachments/assets/fd9c93df-9e63-4554-aed1-88af696f5689)
 
+5. Converting STEP to .obj Format
+
 I converted the exported STEP file to the .obj format using an online tool. This step ensured that the model could be loaded into Unity.
 
 ![image](https://github.com/user-attachments/assets/e2cb77b1-8ee4-4410-938f-0c14c0abb3ff)
+
+6. Loading .obj File in a Separate Unity Prototype Project
+
+To verify the conversion, I loaded the .obj file in a separate Unity prototype project. This helped identify any potential compatibility issues before integrating it into the main project.
+
+![image](https://github.com/user-attachments/assets/2fce52bf-7fc4-4e27-87b8-76308548fce3)
 
 
 

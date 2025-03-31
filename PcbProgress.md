@@ -13,3 +13,11 @@ After installation, I configured Altium by setting up libraries, project directo
 To test the installation and configuration, I loaded an example PCB project in Altium. This helped confirm that the software was functioning correctly and provided a baseline for exporting models.
 
 ![image](https://github.com/user-attachments/assets/9da5566a-c066-4033-9f40-75f6e320a81d)
+
+4. Researching STEP File Format & Exporting Altium Project
+
+Before exporting, I researched the STEP file format to ensure compatibility with our workflow. Successfully exporting the project as a STEP file was a critical milestone.
+
+![image](https://github.com/user-attachments/assets/fd9c93df-9e63-4554-aed1-88af696f5689)
+
+

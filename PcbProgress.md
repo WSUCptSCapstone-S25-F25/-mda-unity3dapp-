@@ -32,5 +32,10 @@ To verify the conversion, I loaded the .obj file in a separate Unity prototype p
 
 ![image](https://github.com/user-attachments/assets/2fce52bf-7fc4-4e27-87b8-76308548fce3)
 
+7. Loading .mtl File with .obj in Separate Unity Prototype Project
+
+I ensured that the .mtl file loaded correctly alongside the .obj file in the prototype project. This step verified that material properties were retained during the import process.
+
+![image](https://github.com/user-attachments/assets/8f1fbcc3-47ae-443b-a55c-ed69887de80d)
 
 

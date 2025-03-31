@@ -38,4 +38,4 @@ I ensured that the .mtl file loaded correctly alongside the .obj file in the pro
 
 ![image](https://github.com/user-attachments/assets/8f1fbcc3-47ae-443b-a55c-ed69887de80d)
 
-
+Currently trying to make it compatible with current project as well as see how to save data in the mtl file and remember things as conductive.

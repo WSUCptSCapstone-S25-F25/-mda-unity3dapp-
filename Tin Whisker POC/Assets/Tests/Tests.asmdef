@@ -3,7 +3,8 @@
     "rootNamespace": "TinWhiskerPOC",
     "references": [
         "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner"
+        "UnityEditor.TestRunner",
+        "WhiskersApp"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

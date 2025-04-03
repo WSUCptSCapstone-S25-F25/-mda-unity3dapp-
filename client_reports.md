@@ -271,4 +271,62 @@ Mr. Jay Brusse asked to set up a second meeting to further inform our team of ti
   <li>Prepare for Sprint 3 demo.</li>
 </ul>
 
+<h2>Agenda (3/25/2025)</h2>  
+<ul>  
+  <li>Discuss upcoming sprint plans, including paper, testing, and Altium processor feature implementation.</li>  
+  <li>Kyle will be progressing report by meeting with a statistician.</li>  
+</ul>  
 
+<h2>Minutes</h2>  
+<p>Mr. Stephen Wells and the Ram Logic Team attended the meeting. Mr. Jay Brusse was unable to attend. The team discussed upcoming sprint plans, including progress on the paper, testing strategies, and the implementation of a new feature for Altium processors.</p>  
+
+<h2>Retrospective Summary</h2>  
+
+<h3>This went well:</h3>  
+<ul>  
+  <li>Clear discussion of sprint priorities.</li>  
+  <li>Team aligned on key goals for paper, testing, and feature implementation.</li>  
+</ul>  
+
+<h3>This needs improvement:</h3>  
+<ul>  
+  <li>More structured updates for tracking progress.</li>  
+</ul>  
+
+<h3>Changes to implement ASAP:</h3>  
+<ul>  
+  <li>Ensure consistent documentation of progress on Altium processor feature.</li>  
+  <li>Continue development on paper and testing strategies.</li>  
+</ul>  
+
+---
+
+<h2>Agenda (4/01/2025)</h2>  
+<ul>  
+  <li>Review testing and acceptance portion of the project.</li>  
+  <li>Discuss completed documentation and create a timeline for systems testing.</li>  
+  <li>Plan to complete systems testing within this sprint.</li>  
+  <li>Kyle will be progressing report by meeting with a statistician.</li>  
+</ul>  
+
+<h2>Minutes</h2>  
+<p>NASA subject matter expert Mr. Jay Brusse, government sponsor at MDA Mr. Stephen Wells, and the Ram Logic Team attended the meeting. Dr. Donna Havrisik was absent. The discussion focused on the testing and acceptance portion of the project. The team reviewed completed documentation and worked on creating a structured timeline for systems testing, aiming to complete it within the current sprint. Mr. Brusse inquired about the expected results from the testing process.</p>  
+
+<h2>Retrospective Summary</h2>  
+
+<h3>This went well:</h3>  
+<ul>  
+  <li>Progress on documentation and testing timeline creation.</li>  
+  <li>Clear goal to complete systems testing this sprint.</li>  
+</ul>  
+
+<h3>This needs improvement:</h3>  
+<ul>  
+  <li>Further refinement of expected testing outcomes and validation metrics.</li>  
+</ul>  
+
+<h3>Changes to implement ASAP:</h3>  
+<ul>  
+  <li>Finalize the testing timeline and begin execution.</li>  
+  <li>Provide clear documentation of test results for review.</li>  
+</ul> 

@@ -38,4 +38,17 @@ I ensured that the .mtl file loaded correctly alongside the .obj file in the pro
 
 ![image](https://github.com/user-attachments/assets/8f1fbcc3-47ae-443b-a55c-ed69887de80d)
 
+8. Final Integration: .mtl and .obj Loaded in Main Project
+
+The final step was to successfully load both the .obj and .mtl files into the main Unity project. This marks a significant achievement in the integration process.
+
+![image](https://github.com/user-attachments/assets/b5828e2f-9805-4dfe-ab0a-5fb45fa1b348)
+
+9. Make final integration of files compatible with current features
+
+The components can be selected as conductive and properly function as the test PCB did in the project.
+
+![image](https://github.com/user-attachments/assets/118490e8-616a-43c2-934e-87411c69615d)
+
+
 Currently trying to make it compatible with current project as well as see how to save data in the mtl file and remember things as conductive.

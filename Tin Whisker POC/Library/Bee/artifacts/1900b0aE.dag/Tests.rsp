@@ -327,6 +327,7 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/WhiskersApp.ref.dll"
 "Assets/Tests/TestLognormal.cs"
+"Assets/Tests/TestSimState.cs"
 -langversion:9.0
 
 /deterministic

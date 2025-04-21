@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\Assets",
+    "\\Assets\\Scripts",
     "\\Assets\\Tests"
   ],
-  "SelectedNode": "\\Assets\\Tests\\TestLognormal.cs",
+  "SelectedNode": "\\Assets\\Scripts\\BoardSettingsPanel.cs",
   "PreviewInSolutionExplorer": false
 }

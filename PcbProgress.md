@@ -50,5 +50,7 @@ The components can be selected as conductive and properly function as the test P
 
 ![image](https://github.com/user-attachments/assets/118490e8-616a-43c2-934e-87411c69615d)
 
+10. The conductive state is remembered, reads file and marks things as conductive.
+    ![image](https://github.com/user-attachments/assets/bdfed200-58cd-47d6-977d-6f2649060922)
+needs work on auto-import conductive materials
 
-Currently trying to make it compatible with current project as well as see how to save data in the mtl file and remember things as conductive.

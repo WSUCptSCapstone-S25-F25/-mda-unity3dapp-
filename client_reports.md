@@ -330,3 +330,76 @@ Mr. Jay Brusse asked to set up a second meeting to further inform our team of ti
   <li>Finalize the testing timeline and begin execution.</li>  
   <li>Provide clear documentation of test results for review.</li>  
 </ul> 
+
+<h2>Agenda (<em>4/17/2025</em>)</h2>
+
+<ul>
+<li> Discussed about our findings regarding automotive conductive material </li>
+  <li> Consulting with client about saving conductive material state </li>
+  <li> Discussed type of video demonstration</li>
+  <li>Schedule a video demonstration.</li>
+  
+</ul>
+
+<h2>Minutes</h2>
+
+<p>NASA subject matter expert Mr. Jay Brusse and government sponsor at MDA Mr. Stephen Wells met with our team, Ram Logic. Dr. Donna Havrisik was absent. In this short meeting we discussed with our client what kind of video demonstration they prefer, they decided a short video demonstration was enough since we’ve been updating our progress frequently. Also a time was scheduled to do the client demonstration. We updated our clients based on our findings about conductive materials and how complex it looks like. </p>
+<h2>Retrospective Summary</h2>
+
+<h3>This went well:</h3>
+
+<ul>
+  <li>Figured out what format video demo our clients prefer.</li>
+  <li>Schedule a time to do the client demo. </li>
+</ul>
+
+<h3>This needs improvement:</h3>
+
+<ul>
+  <li> Research other options to see if automation of conductive material is possible </li>
+  <li>Continued adding unit tests</li>
+</ul>
+
+<h3>Changes to implement ASAP:</h3>
+
+<ul>
+  <li>Add issues as smaller tasks </li>
+  <li> Continue systems testing.</li>
+</ul>
+
+<h2>Agenda (<em>4/24/2025</em>)</h2>
+
+<ul>
+<li> Demonstration of the state of the application</li>
+  <li> Discussion about future work and plans</li>
+  <li> Feedback about current progress </li>
+  
+</ul>
+
+<h2>Minutes</h2>
+
+<p>NASA subject matter expert Mr. Jay Brusse met with our team, Ram Logic. Dr. Donna Havrisik and Mr. Stephen couldn’t attend this meeting. This meeting was to demonstrate what we’ve been working on and how the program looks currently. </p>
+<h2>Retrospective Summary</h2>
+
+<h3>This went well:</h3>
+
+<ul>
+  <li> Successfully showed current application</li>
+  <li> Received comments and suggestions </li>
+
+</ul>
+
+<h3>This needs improvement:</h3>
+
+<ul>
+  <li> Continue working on research paper </li>
+  <li>Complete project report</li>
+</ul>
+
+<h3>Changes to implement ASAP:</h3>
+
+<ul>
+  <li>Add more issues </li>
+  <li> Continue expanding unit tests.</li>
+</ul>
+

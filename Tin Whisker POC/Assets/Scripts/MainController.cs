@@ -373,11 +373,7 @@ public class MainController : MonoBehaviour
 
         if (int.TryParse(SimQuantityText.text, out int result13))
         {
-            if (result13 > 100)
-            {
-                monteCarloSim.numSimulations = 100;
-            }
-            else if (result13 <= 0)
+            if (result13 <= 0)
             {
                 monteCarloSim.numSimulations = 1;
             }

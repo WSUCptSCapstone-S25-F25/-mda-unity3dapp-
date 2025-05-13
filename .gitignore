@@ -4,6 +4,9 @@
 /Tin Whisker POC/Logs/
 /Tin Whisker POC/obj/
 /Tin Whisker POC/.vs/
+/Tin Whisker POC/Tin Whisker POC/
+/Tin Whisker POC/UnityCommon.props
+/Tin Whisker POC/UnityPlayerStub/
 
 /Tin Whisker POC/*.csproj
 /Tin Whisker POC/*.sln

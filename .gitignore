@@ -1,4 +1,13 @@
+# Unity caches and temp files
 /Tin Whisker POC/Library/
+/Tin Whisker POC/Temp/
+/Tin Whisker POC/Logs/
+/Tin Whisker POC/obj/
+/Tin Whisker POC/.vs/
+
+/Tin Whisker POC/*.csproj
+/Tin Whisker POC/*.sln
+/Tin Whisker POC/.idea/
 
 # Created by https://www.toptal.com/developers/gitignore/api/python,pycharm
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,pycharm

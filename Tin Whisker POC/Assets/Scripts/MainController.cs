@@ -179,9 +179,12 @@ public class MainController : MonoBehaviour
 
     public void GetSimInputs()
     {
+        // Whisker parameters
+        // ----------------------- Total Whiskers -------------------------------------
         if (int.TryParse(WhiskerAmountText.text, out int result))
         {
-            if (result > 1000) // 1000 Max amount of whiskers 
+            // TODO: Determine optimal max whiskers to drop.
+            if (result > 1000) // Max of 1000 seems arbitrary. 
             {
                 simState.whiskerAmount = 1000;
             }
@@ -194,7 +197,8 @@ public class MainController : MonoBehaviour
                 simState.whiskerAmount = result;
             }
         }
-
+        
+        // ----------------------- Length of whisker, mu. -------------------------------------
         if (float.TryParse(LengthMuText.text, out float result2))
         {
             if (result2 > 6.0f)
@@ -211,6 +215,7 @@ public class MainController : MonoBehaviour
             }
         }
 
+        // ----------------------- Standard deviation of whisker, sigma. -------------------------------------
         if (float.TryParse(LengthSigmaText.text, out float result3))
         {
             if (result3 > 0.3f * result2)
@@ -227,6 +232,7 @@ public class MainController : MonoBehaviour
             }
         }
 
+        // ----------------------- Diameter of whisker, mu. -------------------------------------
         if (float.TryParse(WidthMuText.text, out float result5))
         {
             if (result5 > 6.0f)
@@ -243,6 +249,7 @@ public class MainController : MonoBehaviour
             }
         }
 
+        // ----------------------- Total Whiskers -------------------------------------
         if (float.TryParse(WidthSigmaText.text, out float result4))
         {
             if (result4 > 0.3f * result3)
@@ -259,6 +266,8 @@ public class MainController : MonoBehaviour
             }
         }
 
+        // Spawn box parameters.
+        // ----------------------- Width, x -------------------------------------
         if (float.TryParse(SpawnAreaSizeXText.text, out float result6))
         {
             if (result6 > 300)
@@ -275,6 +284,7 @@ public class MainController : MonoBehaviour
             }
         }
 
+        // ----------------------- Height, y -------------------------------------
         if (float.TryParse(SpawnAreaSizeYText.text, out float result7))
         {
             if (result7 > 300)
@@ -291,6 +301,7 @@ public class MainController : MonoBehaviour
             }
         }
 
+        // ----------------------- Depth, z -------------------------------------
         if (float.TryParse(SpawnAreaSizeZText.text, out float result8))
         {
             if (result8 > 300)
@@ -307,6 +318,7 @@ public class MainController : MonoBehaviour
             }
         }
 
+        // ----------------------- x origin -------------------------------------
         if (float.TryParse(SpawnPositionXText.text, out float result9))
         {
             if (result9 > 300)
@@ -323,6 +335,7 @@ public class MainController : MonoBehaviour
             }
         }
 
+        // ----------------------- y origin -------------------------------------
         if (float.TryParse(SpawnPositionYText.text, out float result10))
         {
             if (result10 > 300)
@@ -339,6 +352,7 @@ public class MainController : MonoBehaviour
             }
         }
 
+        // ----------------------- z origin -------------------------------------
         if (float.TryParse(SpawnPositionZText.text, out float result11))
         {
             if (result11 > 300)
@@ -355,6 +369,8 @@ public class MainController : MonoBehaviour
             }
         }
 
+        // Simulation parameters
+        // ----------------------- Simulation duration -------------------------------------
         if (float.TryParse(SimDurationText.text, out float result12))
         {
             if (result12 > 20)
@@ -371,6 +387,7 @@ public class MainController : MonoBehaviour
             }
         }
 
+        // ----------------------- Total simulations for a monte-carlo instance  -------------------------------------
         if (int.TryParse(SimQuantityText.text, out int result13))
         {
             if (result13 <= 0)
@@ -382,39 +399,55 @@ public class MainController : MonoBehaviour
                 monteCarloSim.numSimulations = result13;
             }
         }
+        
+        // Mechanical vibrations
+        // ----------------------- Vibration speed  -------------------------------------
         if (float.TryParse(VibrationSpeedText.text, out float result14))
             simState.vibrationSpeed = result14;
 
+        // ----------------------- Vibration amplitude -------------------------------------
         if (float.TryParse(VibrationAmplitudeText.text, out float result15))
             simState.vibrationAmplitude = result15;
 
+        // ----------------------- Shock intensity -------------------------------------
         if (float.TryParse(ShockIntensityText.text, out float result16))
             simState.ShockIntensity = result16;
 
+        // ----------------------- Shock duration -------------------------------------
         if (float.TryParse(ShockDurationText.text, out float result17))
             simState.ShockDuration = result17;
 
+        // Board positioning
+        // ----- Tilt
+        // ----------------------- Tilt in the x-direction of the PCB -------------------------------------
         if (float.TryParse(xTiltText.text, out float result18))
             simState.xTilt = result18;
 
+        // ----------------------- Tilt in the z-direction of the PCB -------------------------------------
         if (float.TryParse(zTiltText.text, out float result19))
             simState.zTilt = result19;
 
+        // -----------------------  -------------------------------------
         if (float.TryParse(BoardXSize.text, out float result20))
             simState.boardXSize = result20;
 
+        // ----------------------- Total Whiskers -------------------------------------
         if (float.TryParse(BoardYSize.text, out float result21))
             simState.boardYSize = result21;
         
+        // ----------------------- Total Whiskers -------------------------------------
         if (float.TryParse(BoardZSize.text, out float result22))
             simState.boardZSize = result22;
         
+        // ----------------------- Total Whiskers -------------------------------------
         if (float.TryParse(BoardXPos.text, out float result23))
             simState.boardXPos = result23;
 
+        // ----------------------- Total Whiskers -------------------------------------
         if (float.TryParse(BoardYPos.text, out float result24))
             simState.boardYPos = result24;
 
+        // ----------------------- Total Whiskers -------------------------------------
         if (float.TryParse(BoardZPos.text, out float result25))
             simState.boardZPos = result25;
     }

@@ -7,10 +7,12 @@
 /Tin Whisker POC/Tin Whisker POC/
 /Tin Whisker POC/UnityCommon.props
 /Tin Whisker POC/UnityPlayerStub/
+/Tin Whisker POC/UserSettings/Layouts/default-2021.dwlt
 
+# Additional files
 /Tin Whisker POC/*.csproj
 /Tin Whisker POC/*.sln
-/Tin Whisker POC/.idea/
+/Tin Whisker POC/UserSettings/Layouts/default-2021.dwlt
 
 # Created by https://www.toptal.com/developers/gitignore/api/python,pycharm
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,pycharm
@@ -68,8 +70,8 @@ cmake-build-*/
 # File-based project format
 *.iws
 
-# IntelliJ
-out/
+# pycharm
+/Tin Whisker POC/.idea/
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/

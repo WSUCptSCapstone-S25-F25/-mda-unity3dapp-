@@ -427,27 +427,32 @@ public class MainController : MonoBehaviour
         if (float.TryParse(zTiltText.text, out float result19))
             simState.zTilt = result19;
 
-        // -----------------------  -------------------------------------
+        // Board params
+        
+        // -- Dimensions of board 
+        // This should not be a feature in the program. This is not PCB editing software.
+        // -----------------------  Board X width -------------------------------------
         if (float.TryParse(BoardXSize.text, out float result20))
             simState.boardXSize = result20;
 
-        // ----------------------- Total Whiskers -------------------------------------
+        // ----------------------- Board Y height -------------------------------------
         if (float.TryParse(BoardYSize.text, out float result21))
             simState.boardYSize = result21;
         
-        // ----------------------- Total Whiskers -------------------------------------
+        // ----------------------- Board Z depth -------------------------------------
         if (float.TryParse(BoardZSize.text, out float result22))
             simState.boardZSize = result22;
         
-        // ----------------------- Total Whiskers -------------------------------------
+        // -- Board positioning from origin
+        // ----------------------- X position -------------------------------------
         if (float.TryParse(BoardXPos.text, out float result23))
             simState.boardXPos = result23;
 
-        // ----------------------- Total Whiskers -------------------------------------
+        // ----------------------- Y position -------------------------------------
         if (float.TryParse(BoardYPos.text, out float result24))
             simState.boardYPos = result24;
 
-        // ----------------------- Total Whiskers -------------------------------------
+        // ----------------------- Z position -------------------------------------
         if (float.TryParse(BoardZPos.text, out float result25))
             simState.boardZPos = result25;
     }

@@ -40,7 +40,7 @@ public class MonteCarloSim : MonoBehaviour
         {
             int batchEnd = Mathf.Min(batchStart + MAX_BATCH_SIZE + beginningSimNumber, totalSimulations + beginningSimNumber);
             // Debug.Log($"Running simulations from {batchStart} to {batchEnd - 1}");
-            for (int i = batchStart; i < batchEnd; i++)
+            for (int i = batchStart; i < batchEnd - 1; i++)
             {
                 simsRun++;
                 whiskerSim.RunSim(i, duration, false);

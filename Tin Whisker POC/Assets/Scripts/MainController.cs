@@ -16,7 +16,6 @@ public class MainController : MonoBehaviour
     public WhiskerSim whiskerSim;
     private MonteCarloSim monteCarloSim;
 
-
     public GameObject ResultsCanvas;
     public TMP_InputField WhiskerAmountText;
     public TMP_InputField LengthSigmaText;
@@ -39,6 +38,25 @@ public class MainController : MonoBehaviour
     public TMP_InputField BoardXPos;
     public TMP_InputField BoardYPos;
     public TMP_InputField BoardZPos;
+    
+    // Constants for mins and maxes:
+    // ---- Whisker const
+    const int WHISKER_MAX = 1000;
+    const int WHISKER_MIN = 0;
+    const float MU_MAX = 6.0f;
+    const float MU_MIN = 0.1f;
+    const float SIGMA_MAX = 0.3f;
+    const float SIGMA_MIN = 0f;
+    // ---- Spawn Box const
+    const float SPAWN_SIZE_MAX_1D = 300f;
+    const float SPAWN_SIZE_MIN_1D = 1f;
+    const float SPAWN_POSITION_MAX = 300f;
+    const float SPAWN_POSITION_MIN = -300f;
+    // ---- Simulation const
+    const float SIM_DURATION_MAX = 20f;
+    const float SIM_DURATION_MIN = 0.1f;
+    const int NUM_SIMS_MAX = 10000;
+    const int NUM_SIMS_MIN = 1;
     
     public Button SimulationSettingsButton;
     public Button BoardSettingsButton;
@@ -87,7 +105,7 @@ public class MainController : MonoBehaviour
             Debug.LogError("PopupManager is not assigned. Cannot show popup.");
         }
     }
-
+   
     private void ParameterSetup()
     {
         myJsonPath = rootJsonPath;
@@ -176,229 +194,103 @@ public class MainController : MonoBehaviour
             Debug.LogError("GameObject 'WhiskerSpawnBox' not found in the scene.");
         }
     }
+    
+    private float ParseAndClampFloat(string text, float min, float max)
+    {
+        if (float.TryParse(text, out var v))
+            return Mathf.Clamp(v, min, max);
+        // default to lower bound
+        return min;
+    }
 
+    private int ParseAndClampInt(string text, int min, int max)
+    {
+        if (int.TryParse(text, out var v))
+            return Mathf.Clamp(v, min, max);
+        return min;
+    }
+    
     public void GetSimInputs()
     {
         // Whisker parameters
         // ----------------------- Total Whiskers -------------------------------------
-        if (int.TryParse(WhiskerAmountText.text, out int result))
-        {
-            // TODO: Determine optimal max whiskers to drop.
-            if (result > 1000) // Max of 1000 seems arbitrary. 
-            {
-                simState.whiskerAmount = 1000;
-            }
-            else if (result < 0)
-            {
-                simState.whiskerAmount = 0;
-            }
-            else
-            {
-                simState.whiskerAmount = result;
-            }
-        }
+        simState.whiskerAmount = ParseAndClampInt(
+            WhiskerAmountText.text,
+            WHISKER_MIN,
+            WHISKER_MAX
+        );
+        // ----------------------- lognormal length of whiskers. -------------------------------------
+        simState.LengthMu = ParseAndClampFloat(
+            LengthMuText.text,
+            MU_MIN,
+            MU_MAX
+        );
+        simState.LengthSigma = ParseAndClampFloat(
+            LengthSigmaText.text,
+            SIGMA_MIN,
+            SIGMA_MAX * simState.LengthMu
+        );
         
-        // ----------------------- Length of whisker, mu. -------------------------------------
-        if (float.TryParse(LengthMuText.text, out float result2))
-        {
-            if (result2 > 6.0f)
-            {
-                simState.LengthMu = 6.0f;
-            }
-            else if (result2 < 0.1f)
-            {
-                simState.LengthMu = 0.1f;
-            }
-            else
-            {
-                simState.LengthMu = result2;
-            }
-        }
-
-        // ----------------------- Standard deviation of whisker, sigma. -------------------------------------
-        if (float.TryParse(LengthSigmaText.text, out float result3))
-        {
-            if (result3 > 0.3f * result2)
-            {
-                simState.LengthSigma = 0.3f * result2;
-            }
-            else if (result3 < 0)
-            {
-                simState.LengthSigma = 0;
-            }
-            else
-            {
-                simState.LengthSigma = result3;
-            }
-        }
-
-        // ----------------------- Diameter of whisker, mu. -------------------------------------
-        if (float.TryParse(WidthMuText.text, out float result5))
-        {
-            if (result5 > 6.0f)
-            {
-                simState.WidthMu = 6.0f;
-            }
-            else if (result5 < 0.1f)
-            {
-                simState.WidthMu = 0.1f;
-            }
-            else
-            {
-                simState.WidthMu = result5;
-            }
-        }
-
-        // ----------------------- Total Whiskers -------------------------------------
-        if (float.TryParse(WidthSigmaText.text, out float result4))
-        {
-            if (result4 > 0.3f * result3)
-            {
-                simState.WidthSigma = 0.3f * result3;
-            }
-            else if (result4 < 0)
-            {
-                simState.WidthSigma = 0;
-            }
-            else
-            {
-                simState.WidthSigma = result4;
-            }
-        }
-
+        // ------------------------- lognormal diameters of whiskers ----------------------------------
+        simState.WidthMu = ParseAndClampFloat(
+            WidthMuText.text,
+            MU_MIN,
+            MU_MAX
+        );
+        simState.WidthSigma = ParseAndClampFloat(
+            WidthSigmaText.text,
+            SIGMA_MIN,
+            SIGMA_MAX * simState.WidthMu
+        );
+        
         // Spawn box parameters.
-        // ----------------------- Width, x -------------------------------------
-        if (float.TryParse(SpawnAreaSizeXText.text, out float result6))
-        {
-            if (result6 > 300)
-            {
-                simState.spawnAreaSizeX = 300;
-            }
-            else if (result6 < 1)
-            {
-                simState.spawnAreaSizeX = 1.0f;
-            }
-            else
-            {
-                simState.spawnAreaSizeX = result6;
-            }
-        }
+        // ---------------- Box Size ----------------------------------
+        simState.spawnAreaSizeX = ParseAndClampFloat(
+            SpawnAreaSizeXText.text,
+            SPAWN_SIZE_MIN_1D,
+            SPAWN_SIZE_MAX_1D
+        );
+        simState.spawnAreaSizeY = ParseAndClampFloat(
+            SpawnAreaSizeYText.text,
+            SPAWN_SIZE_MIN_1D,
+            SPAWN_SIZE_MAX_1D
+        );
+        simState.spawnAreaSizeZ = ParseAndClampFloat(
+            SpawnAreaSizeZText.text,
+            SPAWN_SIZE_MIN_1D,
+            SPAWN_SIZE_MAX_1D
+        );
 
-        // ----------------------- Height, y -------------------------------------
-        if (float.TryParse(SpawnAreaSizeYText.text, out float result7))
-        {
-            if (result7 > 300)
-            {
-                simState.spawnAreaSizeY = 300;
-            }
-            else if (result7 < 1)
-            {
-                simState.spawnAreaSizeY = 1;
-            }
-            else
-            {
-                simState.spawnAreaSizeY = result7;
-            }
-        }
+        // ----------------------- Box Origin -------------------------------------
+        simState.spawnPositionX = ParseAndClampFloat(
+            SpawnPositionXText.text,
+            SPAWN_POSITION_MIN,
+            SPAWN_POSITION_MAX
+        );
+        simState.spawnPositionY = ParseAndClampFloat(
+            SpawnPositionYText.text,
+            SPAWN_POSITION_MIN,
+            SPAWN_POSITION_MAX
+        );
+        simState.spawnPositionZ = ParseAndClampFloat(
+            SpawnPositionZText.text,
+            SPAWN_POSITION_MIN,
+            SPAWN_POSITION_MAX
+        );
 
-        // ----------------------- Depth, z -------------------------------------
-        if (float.TryParse(SpawnAreaSizeZText.text, out float result8))
-        {
-            if (result8 > 300)
-            {
-                simState.spawnAreaSizeZ = 300;
-            }
-            else if (result8 < 1)
-            {
-                simState.spawnAreaSizeZ = 1;
-            }
-            else
-            {
-                simState.spawnAreaSizeZ = result8;
-            }
-        }
-
-        // ----------------------- x origin -------------------------------------
-        if (float.TryParse(SpawnPositionXText.text, out float result9))
-        {
-            if (result9 > 300)
-            {
-                simState.spawnPositionX = 300;
-            }
-            else if (result9 < -300)
-            {
-                simState.spawnPositionX = 300;
-            }
-            else
-            {
-                simState.spawnPositionX = result9;
-            }
-        }
-
-        // ----------------------- y origin -------------------------------------
-        if (float.TryParse(SpawnPositionYText.text, out float result10))
-        {
-            if (result10 > 300)
-            {
-                simState.spawnPositionY = 300;
-            }
-            else if (result10 < -300)
-            {
-                simState.spawnPositionY = 300;
-            }
-            else
-            {
-                simState.spawnPositionY = result10;
-            }
-        }
-
-        // ----------------------- z origin -------------------------------------
-        if (float.TryParse(SpawnPositionZText.text, out float result11))
-        {
-            if (result11 > 300)
-            {
-                simState.spawnPositionZ = 300;
-            }
-            else if (result11 < -300)
-            {
-                simState.spawnPositionZ = 300;
-            }
-            else
-            {
-                simState.spawnPositionZ = result11;
-            }
-        }
-
-        // Simulation parameters
         // ----------------------- Simulation duration -------------------------------------
-        if (float.TryParse(SimDurationText.text, out float result12))
-        {
-            if (result12 > 20)
-            {
-                simState.simDuration = 20;
-            }
-            else if (result12 < 0.1f)
-            {
-                simState.simDuration = 0.1f;
-            }
-            else
-            {
-                simState.simDuration = result12;
-            }
-        }
+        simState.simDuration = ParseAndClampFloat(
+            SimDurationText.text,
+            SIM_DURATION_MIN,
+            SIM_DURATION_MAX
+        );
 
         // ----------------------- Total simulations for a monte-carlo instance  -------------------------------------
-        if (int.TryParse(SimQuantityText.text, out int result13))
-        {
-            if (result13 <= 0)
-            {
-                monteCarloSim.numSimulations = 1;
-            }
-            else
-            {
-                monteCarloSim.numSimulations = result13;
-            }
-        }
+        monteCarloSim.numSimulations = ParseAndClampInt(
+            SimQuantityText.text,
+            NUM_SIMS_MIN,
+            NUM_SIMS_MAX
+        );
         
         // Mechanical vibrations
         // ----------------------- Vibration speed  -------------------------------------
@@ -417,44 +309,28 @@ public class MainController : MonoBehaviour
         if (float.TryParse(ShockDurationText.text, out float result17))
             simState.ShockDuration = result17;
 
-        // Board positioning
-        // ----- Tilt
-        // ----------------------- Tilt in the x-direction of the PCB -------------------------------------
-        if (float.TryParse(xTiltText.text, out float result18))
-            simState.xTilt = result18;
-
-        // ----------------------- Tilt in the z-direction of the PCB -------------------------------------
-        if (float.TryParse(zTiltText.text, out float result19))
-            simState.zTilt = result19;
-
         // Board params
-        
-        // -- Dimensions of board 
-        // This should not be a feature in the program. This is not PCB editing software.
-        // -----------------------  Board X width -------------------------------------
-        if (float.TryParse(BoardXSize.text, out float result20))
-            simState.boardXSize = result20;
+        // ---- Dimensions of board (temporary imports – no clamps)
+        if (float.TryParse(BoardXSize.text, out float bx))   simState.boardXSize = bx;
+        if (float.TryParse(BoardYSize.text, out float by))   simState.boardYSize = by;
+        if (float.TryParse(BoardZSize.text, out float bz))   simState.boardZSize = bz;
 
-        // ----------------------- Board Y height -------------------------------------
-        if (float.TryParse(BoardYSize.text, out float result21))
-            simState.boardYSize = result21;
-        
-        // ----------------------- Board Z depth -------------------------------------
-        if (float.TryParse(BoardZSize.text, out float result22))
-            simState.boardZSize = result22;
-        
-        // -- Board positioning from origin
-        // ----------------------- X position -------------------------------------
-        if (float.TryParse(BoardXPos.text, out float result23))
-            simState.boardXPos = result23;
-
-        // ----------------------- Y position -------------------------------------
-        if (float.TryParse(BoardYPos.text, out float result24))
-            simState.boardYPos = result24;
-
-        // ----------------------- Z position -------------------------------------
-        if (float.TryParse(BoardZPos.text, out float result25))
-            simState.boardZPos = result25;
+        // ---- Board positioning from origin (clamped same as spawn position)
+        simState.boardXPos = ParseAndClampFloat(
+            BoardXPos.text,
+            SPAWN_POSITION_MIN,
+            SPAWN_POSITION_MAX
+        );
+        simState.boardYPos = ParseAndClampFloat(
+            BoardYPos.text,
+            SPAWN_POSITION_MIN,
+            SPAWN_POSITION_MAX
+        );
+        simState.boardZPos = ParseAndClampFloat(
+            BoardZPos.text,
+            SPAWN_POSITION_MIN,
+            SPAWN_POSITION_MAX
+        );
     }
 
     public void ui_lock()
@@ -540,11 +416,9 @@ public class MainController : MonoBehaviour
             Debug.Log("Sim num: " + SimNumber);
             GetSimInputs();
 
-            // TODO: Show object file and mtl file path in results so user knows which PCB was used
             simState.objfilePath = objfilePath;
             simState.mtlfilePath = mtlfilePath;
 
-            // TODO: Make all but end sim button be non-interactable
             GameObject.Find("Run Monte Carlo").GetComponent<Button>().interactable = false;
             GameObject.Find("RunSimButton").GetComponent<Button>().interactable = false;
             MonteCarloWaitScreen.gameObject.SetActive(true);
@@ -552,7 +426,7 @@ public class MainController : MonoBehaviour
             simState.SaveSimToJSON(myJsonPath);
 
             monteCarloSim.RunMonteCarloSim(whiskerSim, SimNumber, simState.simDuration);
-            StartCoroutine(EndOfMonteCarloSimActions());  // TODO: Change to end of monte carlo sim actions
+            StartCoroutine(EndOfMonteCarloSimActions());
         }
         else
         {

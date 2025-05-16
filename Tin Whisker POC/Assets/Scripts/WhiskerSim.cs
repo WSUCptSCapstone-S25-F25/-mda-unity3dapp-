@@ -55,6 +55,9 @@ public class WhiskerSim : MonoBehaviour
             Vibration.StartVibration();
         }
 
+        // TODO: Decouple results processor from the whisker sim.
+        // ** This process should be taken care of in the controller **
+        // ----------------------- Class coupling -----------------------------------------
         // Log all whiskers to whisker_log_{simNumber}
         ResultsProcessor.LogWhiskers(GetSimLayerWhiskers(whiskers, layerName), simNumber);
         // Log the SimState to other results files

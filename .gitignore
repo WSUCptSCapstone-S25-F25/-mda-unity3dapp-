@@ -11,8 +11,6 @@
 default-2021.dwlt
 
 # Additional files
-/Tin Whisker POC/*.csproj
-/Tin Whisker POC/*.sln
 /Tin Whisker POC/UserSettings/Layouts/default-2021.dwlt
 
 # Personal scripts

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OpenVibration : MonoBehaviour
+public class VibrationController : MonoBehaviour
 {
     public GameObject textBox1;
     public GameObject textBox2;

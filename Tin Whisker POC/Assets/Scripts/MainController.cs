@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Logging;
 using SimInfo;
 using TMPro;
 using Unity.VisualScripting;
@@ -15,7 +16,6 @@ public class MainController : MonoBehaviour
     public SimState simState;
     public WhiskerSim whiskerSim;
     private MonteCarloSim monteCarloSim;
-
     public GameObject ResultsCanvas;
     public TMP_InputField WhiskerAmountText;
     public TMP_InputField LengthSigmaText;
@@ -57,7 +57,11 @@ public class MainController : MonoBehaviour
     const float SIM_DURATION_MIN = 0.1f;
     const int NUM_SIMS_MAX = 10000;
     const int NUM_SIMS_MIN = 1;
+
+    private Button    _showLogButton;
+    private GameObject _logPanel;
     
+    // ---- Unity UI
     public Button SimulationSettingsButton;
     public Button BoardSettingsButton;
 
@@ -66,28 +70,38 @@ public class MainController : MonoBehaviour
     public Button InspectionModeButton;
     public Button ClearWhiskersButton;
 
+    // ---- PCB files
     public bool PCBloaded = false;
     public string objfilePath;
     public string mtlfilePath;
 
+    // ---- Paths
     private string rootJsonPath;
     private string myJsonPath;
 
+    // ---- Vibration fields
     public TMP_InputField VibrationSpeedText;
     public TMP_InputField VibrationAmplitudeText;
+    
+    // ---- Shock fields
     public TMP_InputField ShockIntensityText;
     public TMP_InputField ShockDurationText;
 
     private PopupManager popupManager;
 
+    private string channelName = "MainController";
+    // [SerializeField] private DebugLogController debugLogController;
+
     public void Start()
     {
         rootJsonPath = Application.persistentDataPath + "/SimState.JSON";
+        // debugLogController.Log(channelName, "Hello from the main controller!");
         popupManager = FindObjectOfType<PopupManager>();
         EndSimEarlyButton.gameObject.SetActive(false);
         InspectionModeButton.gameObject.SetActive(false);
         MonteCarloWaitScreen.gameObject.SetActive(false);
         ClearWhiskersButton.gameObject.SetActive(false);
+       
         ui_lock();
         monteCarloSim = MonteCarloSimulationObject.GetComponent<MonteCarloSim>();
 

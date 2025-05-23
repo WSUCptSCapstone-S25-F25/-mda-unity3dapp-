@@ -28,7 +28,7 @@ public class ConductiveMaterialsController : MonoBehaviour
                 }
             }
 
-            List<string> allMaterials = ComponentsContainer.GetAllMaterials();
+            List<string> allMaterials = ComponentContainer.GetAllMaterials();
             foreach (var mat in allMaterials)
             {
                 AddMaterial(mat);
@@ -75,7 +75,7 @@ public class ConductiveMaterialsController : MonoBehaviour
             return;
         }
 
-        List<GameObject> materialComponents = ComponentsContainer.GetComponentsByMaterial(material);
+        List<GameObject> materialComponents = ComponentContainer.GetComponentsByMaterial(material);
         foreach (var comp in materialComponents)
         {
             var renderer = comp.GetComponent<Renderer>();

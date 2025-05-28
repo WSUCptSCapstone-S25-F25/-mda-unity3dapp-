@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shocker : MonoBehaviour
+public class ShockController : MonoBehaviour
 {
     public GameObject textBox1;
     public GameObject textBox2;

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq; 
 
-public class ComponentsContainer
+public class ComponentContainer
 {
     private static Dictionary<string, List<GameObject>> MaterialsComponents = new Dictionary<string, List<GameObject>>();
 

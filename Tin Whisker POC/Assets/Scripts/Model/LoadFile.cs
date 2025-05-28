@@ -134,7 +134,7 @@ public class LoadFile : MonoBehaviour
                 Debug.Log("Error loading OBJ model.");
                 yield break; // Exit the coroutine early if loading OBJ model fails
             }
-            ComponentsContainer.ClearAllComponents();
+            ComponentContainer.ClearAllComponents();
             SetPosition(0, 0, 0);
             Model.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
             Model.name = "MainCiruitBoard";
@@ -175,7 +175,7 @@ public class LoadFile : MonoBehaviour
                 child.gameObject.layer = 6;
                 
                 string materialName = child.GetComponent<MeshRenderer>().material.name;
-                ComponentsContainer.AddComponent(materialName, child.gameObject);
+                ComponentContainer.AddComponent(materialName, child.gameObject);
             }
 
             // Save the file path to the scene handler, to be used in the Monte Carlo simulation

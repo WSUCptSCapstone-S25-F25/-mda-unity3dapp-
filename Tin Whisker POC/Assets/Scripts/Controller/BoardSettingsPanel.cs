@@ -8,7 +8,7 @@ public class BoardSettingsPanel : MonoBehaviour
     public Button closeBoardSettingsButton; 
     public GameObject goToPartPanel;         
     public GameObject monteCarloSelectionPanel; 
-    public GameObject basicControlsPanel;   
+    public GameObject basicControlsPanel;
     public Button exitButton;     
 
     private bool isPanelOpen = false; 

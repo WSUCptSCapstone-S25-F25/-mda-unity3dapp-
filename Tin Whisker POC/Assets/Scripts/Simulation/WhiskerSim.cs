@@ -4,6 +4,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 using System.IO;
 using SimInfo;
+using UnityEngine.Serialization;
 
 public class WhiskerSim : MonoBehaviour
 {
@@ -19,9 +20,9 @@ public class WhiskerSim : MonoBehaviour
     private Coroutine simulationCoroutine;
     private bool render;
     public Shock Shock;
-    public Shocker Shocker;
+    [FormerlySerializedAs("Shocker")] public ShockController shockController;
     public Vibration Vibration;
-    public OpenVibration OpenVibration;
+    [FormerlySerializedAs("OpenVibration")] public VibrationController vibrationController;
 
     public void RunSim(int simNumber, float duration, bool render = true)
     {
@@ -43,13 +44,13 @@ public class WhiskerSim : MonoBehaviour
         SimStateSetUp(simNumber);
         List<WhiskerCollider> whiskerColliders = SpawnWhiskers(layerName);
 
-        if (Shocker.shocking)
+        if (shockController.shocking)
         {
             Debug.Log("Starting shock...");
             Shock.StartShock();
         }
 
-        if (OpenVibration.vibrate)
+        if (vibrationController.vibrate)
         {
             Debug.Log("Starting vibration...");
             Vibration.StartVibration();

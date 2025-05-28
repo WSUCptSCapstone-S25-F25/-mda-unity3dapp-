@@ -20,7 +20,7 @@ namespace Logging
         [SerializeField] private List<Toggle> toggles;
 
         // Active loggers by channel
-        private readonly Dictionary<string, Logger> loggers = new Dictionary<string, Logger>();
+        private readonly Dictionary<string, Logger> loggers = new();
 
         private void Awake()
         {

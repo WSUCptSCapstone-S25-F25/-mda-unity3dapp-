@@ -27,8 +27,6 @@ public class MonteCarloSim : MonoBehaviour
     
     // [SerializeField] private DebugLogController debugLogController;
     
-    // Awake waits for Unity to finish initializing resources
-    
     public void RunMonteCarloSim(WhiskerSim whiskerSim, int simNumber, float duration)
     {
         var startTime = DateTime.Now;

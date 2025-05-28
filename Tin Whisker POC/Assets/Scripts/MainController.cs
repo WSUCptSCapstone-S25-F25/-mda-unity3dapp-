@@ -90,6 +90,8 @@ public class MainController : MonoBehaviour
     private PopupManager popupManager;
 
     private string channelName = "MainController";
+    
+    // ---- Singleton debug logger
     // [SerializeField] private DebugLogController debugLogController;
 
     public void Start()

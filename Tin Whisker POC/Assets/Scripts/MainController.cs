@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Logging;
+using LoggingComponents;
+// using Logging;
 using SimInfo;
 using TMPro;
 using Unity.VisualScripting;
@@ -91,91 +92,80 @@ public class MainController : MonoBehaviour
 
     private string channelName = "MainController";
     
-    // ---- Singleton debug logger
-    // [SerializeField] private DebugLogController debugLogController;
-
-    public void Start()
+   public void Start()
     {
+        LoggingManager.Log(channelName, "Start: Initializing MainController");
+
         rootJsonPath = Application.persistentDataPath + "/SimState.JSON";
-        // debugLogController.Log(channelName, "Hello from the main controller!");
         popupManager = FindObjectOfType<PopupManager>();
         EndSimEarlyButton.gameObject.SetActive(false);
         InspectionModeButton.gameObject.SetActive(false);
         MonteCarloWaitScreen.gameObject.SetActive(false);
         ClearWhiskersButton.gameObject.SetActive(false);
-       
+
         ui_lock();
         monteCarloSim = MonteCarloSimulationObject.GetComponent<MonteCarloSim>();
 
+        LoggingManager.Log(channelName, "Start: Calling ParameterSetup");
         ParameterSetup();
     }
-
     public void ShowDebugMessage(string message)
     {
         if (popupManager != null)
         {
             PopupManagerSingleton.Instance.ShowPopup(message);
+            LoggingManager.Log(channelName, $"ShowDebugMessage: \"{message}\"");
         }
         else
         {
             Debug.LogError("PopupManager is not assigned. Cannot show popup.");
         }
     }
-   
+
     private void ParameterSetup()
     {
+        LoggingManager.Log(channelName, "ParameterSetup: Loading or creating SimState");
+
         myJsonPath = rootJsonPath;
         if (System.IO.File.Exists(rootJsonPath))
         {
-            // JSON folder exists, read data from file and initialize SimState object
             string jsonString = System.IO.File.ReadAllText(rootJsonPath);
             simState = JsonUtility.FromJson<SimState>(jsonString);
             simState.simNumber = SimNumber;
+            LoggingManager.Log(channelName, "ParameterSetup: Found existing SimState");
         }
         else
         {
-            // JSON folder doesn't exist, create SimState object with default constructor
-            Debug.Log("root JSON not found\nSaving class to JSON");
+            LoggingManager.Log(channelName, "ParameterSetup: No JSON found, creating new SimState");
             simState = new SimState();
             simState.simNumber = SimNumber;
-            if (simState == null)
-            {
-                ShowDebugMessage("No sim state found");
-            }
-            else
-            {
-                Debug.Log("Sim state found");
-                Debug.Log("rootJsonPath: " + rootJsonPath);
-            }
             simState.SaveSimToJSON(rootJsonPath);
+            LoggingManager.Log(channelName, $"ParameterSetup: Created new SimState and saved to {rootJsonPath}");
         }
 
         WhiskerAmountText.text = simState.whiskerAmount.ToString();
-
         LengthSigmaText.text = simState.LengthSigma.ToString();
         LengthMuText.text = simState.LengthMu.ToString();
-
         WidthSigmaText.text = simState.WidthSigma.ToString();
         WidthMuText.text = simState.WidthMu.ToString();
-
+        
         SpawnAreaSizeXText.text = simState.spawnAreaSizeX.ToString();
         SpawnAreaSizeYText.text = simState.spawnAreaSizeY.ToString();
         SpawnAreaSizeZText.text = simState.spawnAreaSizeZ.ToString();
-
         SpawnPositionXText.text = simState.spawnPositionX.ToString();
         SpawnPositionYText.text = simState.spawnPositionY.ToString();
         SpawnPositionZText.text = simState.spawnPositionZ.ToString();
-
+        
         SimDurationText.text = simState.simDuration.ToString();
-
+        
         VibrationSpeedText.text = simState.vibrationSpeed.ToString();
         VibrationAmplitudeText.text = simState.vibrationAmplitude.ToString();
         ShockIntensityText.text = simState.ShockIntensity.ToString();
         ShockDurationText.text = simState.ShockDuration.ToString();
-
+        
         xTiltText.text = simState.xTilt.ToString();
         zTiltText.text = simState.zTilt.ToString();
-
+        
         BoardXPos.text = simState.boardXPos.ToString();
         BoardYPos.text = simState.boardYPos.ToString();
         BoardZPos.text = simState.boardZPos.ToString();
@@ -183,9 +173,9 @@ public class MainController : MonoBehaviour
         BoardYSize.text = simState.boardYSize.ToString();
         BoardZSize.text = simState.boardZSize.ToString();
 
-        // Get the float value from the text field
         GetSimInputs();
         simState.SaveSimToJSON(rootJsonPath);
+        LoggingManager.Log(channelName, "ParameterSetup: Saved SimState and setting up spawn box");
         SetUpSpawnBox();
     }
 
@@ -197,8 +187,8 @@ public class MainController : MonoBehaviour
             SpawnBoxController spawnBoxController = spawnBoxObject.GetComponent<SpawnBoxController>();
             if (spawnBoxController != null)
             {
-                // Call UpdateCubeProperties on the SpawnBoxController instance
                 spawnBoxController.UpdateCubeProperties();
+                LoggingManager.Log(channelName, "SetUpSpawnBox: Updated spawn box properties");
             }
             else
             {
@@ -210,12 +200,11 @@ public class MainController : MonoBehaviour
             Debug.LogError("GameObject 'WhiskerSpawnBox' not found in the scene.");
         }
     }
-    
+
     private float ParseAndClampFloat(string text, float min, float max)
     {
         if (float.TryParse(text, out var v))
             return Mathf.Clamp(v, min, max);
-        // default to lower bound
         return min;
     }
 
@@ -225,169 +214,77 @@ public class MainController : MonoBehaviour
             return Mathf.Clamp(v, min, max);
         return min;
     }
-    
+
     public void GetSimInputs()
     {
-        // Whisker parameters
-        // ----------------------- Total Whiskers -------------------------------------
-        simState.whiskerAmount = ParseAndClampInt(
-            WhiskerAmountText.text,
-            WHISKER_MIN,
-            WHISKER_MAX
-        );
-        // ----------------------- lognormal length of whiskers. -------------------------------------
-        simState.LengthMu = ParseAndClampFloat(
-            LengthMuText.text,
-            MU_MIN,
-            MU_MAX
-        );
-        simState.LengthSigma = ParseAndClampFloat(
-            LengthSigmaText.text,
-            SIGMA_MIN,
-            SIGMA_MAX * simState.LengthMu
-        );
-        
-        // ------------------------- lognormal diameters of whiskers ----------------------------------
-        simState.WidthMu = ParseAndClampFloat(
-            WidthMuText.text,
-            MU_MIN,
-            MU_MAX
-        );
-        simState.WidthSigma = ParseAndClampFloat(
-            WidthSigmaText.text,
-            SIGMA_MIN,
-            SIGMA_MAX * simState.WidthMu
-        );
-        
-        // Spawn box parameters.
-        // ---------------- Box Size ----------------------------------
-        simState.spawnAreaSizeX = ParseAndClampFloat(
-            SpawnAreaSizeXText.text,
-            SPAWN_SIZE_MIN_1D,
-            SPAWN_SIZE_MAX_1D
-        );
-        simState.spawnAreaSizeY = ParseAndClampFloat(
-            SpawnAreaSizeYText.text,
-            SPAWN_SIZE_MIN_1D,
-            SPAWN_SIZE_MAX_1D
-        );
-        simState.spawnAreaSizeZ = ParseAndClampFloat(
-            SpawnAreaSizeZText.text,
-            SPAWN_SIZE_MIN_1D,
-            SPAWN_SIZE_MAX_1D
-        );
+        LoggingManager.Log(channelName, "GetSimInputs: Reading and clamping user input");
+        simState.whiskerAmount = ParseAndClampInt(WhiskerAmountText.text, WHISKER_MIN, WHISKER_MAX);
+        simState.LengthMu = ParseAndClampFloat(LengthMuText.text, MU_MIN, MU_MAX);
+        simState.LengthSigma = ParseAndClampFloat(LengthSigmaText.text, SIGMA_MIN, SIGMA_MAX * simState.LengthMu);
+        simState.WidthMu = ParseAndClampFloat(WidthMuText.text, MU_MIN, MU_MAX);
+        simState.WidthSigma = ParseAndClampFloat(WidthSigmaText.text, SIGMA_MIN, SIGMA_MAX * simState.WidthMu);
+        simState.spawnAreaSizeX = ParseAndClampFloat(SpawnAreaSizeXText.text, SPAWN_SIZE_MIN_1D, SPAWN_SIZE_MAX_1D);
+        simState.spawnAreaSizeY = ParseAndClampFloat(SpawnAreaSizeYText.text, SPAWN_SIZE_MIN_1D, SPAWN_SIZE_MAX_1D);
+        simState.spawnAreaSizeZ = ParseAndClampFloat(SpawnAreaSizeZText.text, SPAWN_SIZE_MIN_1D, SPAWN_SIZE_MAX_1D);
+        simState.spawnPositionX = ParseAndClampFloat(SpawnPositionXText.text, SPAWN_POSITION_MIN, SPAWN_POSITION_MAX);
+        simState.spawnPositionY = ParseAndClampFloat(SpawnPositionYText.text, SPAWN_POSITION_MIN, SPAWN_POSITION_MAX);
+        simState.spawnPositionZ = ParseAndClampFloat(SpawnPositionZText.text, SPAWN_POSITION_MIN, SPAWN_POSITION_MAX);
+        simState.simDuration = ParseAndClampFloat(SimDurationText.text, SIM_DURATION_MIN, SIM_DURATION_MAX);
 
-        // ----------------------- Box Origin -------------------------------------
-        simState.spawnPositionX = ParseAndClampFloat(
-            SpawnPositionXText.text,
-            SPAWN_POSITION_MIN,
-            SPAWN_POSITION_MAX
-        );
-        simState.spawnPositionY = ParseAndClampFloat(
-            SpawnPositionYText.text,
-            SPAWN_POSITION_MIN,
-            SPAWN_POSITION_MAX
-        );
-        simState.spawnPositionZ = ParseAndClampFloat(
-            SpawnPositionZText.text,
-            SPAWN_POSITION_MIN,
-            SPAWN_POSITION_MAX
-        );
+        monteCarloSim.numSimulations = ParseAndClampInt(SimQuantityText.text, NUM_SIMS_MIN, NUM_SIMS_MAX);
 
-        // ----------------------- Simulation duration -------------------------------------
-        simState.simDuration = ParseAndClampFloat(
-            SimDurationText.text,
-            SIM_DURATION_MIN,
-            SIM_DURATION_MAX
-        );
+        if (float.TryParse(VibrationSpeedText.text, out float vibSpeed)) simState.vibrationSpeed = vibSpeed;
+        if (float.TryParse(VibrationAmplitudeText.text, out float vibAmp)) simState.vibrationAmplitude = vibAmp;
+        if (float.TryParse(ShockIntensityText.text, out float shockInt)) simState.ShockIntensity = shockInt;
+        if (float.TryParse(ShockDurationText.text, out float shockDur)) simState.ShockDuration = shockDur;
 
-        // ----------------------- Total simulations for a monte-carlo instance  -------------------------------------
-        monteCarloSim.numSimulations = ParseAndClampInt(
-            SimQuantityText.text,
-            NUM_SIMS_MIN,
-            NUM_SIMS_MAX
-        );
-        
-        // Mechanical vibrations
-        // ----------------------- Vibration speed  -------------------------------------
-        if (float.TryParse(VibrationSpeedText.text, out float result14))
-            simState.vibrationSpeed = result14;
+        if (float.TryParse(BoardXSize.text, out float bx)) simState.boardXSize = bx;
+        if (float.TryParse(BoardYSize.text, out float by)) simState.boardYSize = by;
+        if (float.TryParse(BoardZSize.text, out float bz)) simState.boardZSize = bz;
 
-        // ----------------------- Vibration amplitude -------------------------------------
-        if (float.TryParse(VibrationAmplitudeText.text, out float result15))
-            simState.vibrationAmplitude = result15;
-
-        // ----------------------- Shock intensity -------------------------------------
-        if (float.TryParse(ShockIntensityText.text, out float result16))
-            simState.ShockIntensity = result16;
-
-        // ----------------------- Shock duration -------------------------------------
-        if (float.TryParse(ShockDurationText.text, out float result17))
-            simState.ShockDuration = result17;
-
-        // Board params
-        // ---- Dimensions of board (temporary imports – no clamps)
-        if (float.TryParse(BoardXSize.text, out float bx))   simState.boardXSize = bx;
-        if (float.TryParse(BoardYSize.text, out float by))   simState.boardYSize = by;
-        if (float.TryParse(BoardZSize.text, out float bz))   simState.boardZSize = bz;
-
-        // ---- Board positioning from origin (clamped same as spawn position)
-        simState.boardXPos = ParseAndClampFloat(
-            BoardXPos.text,
-            SPAWN_POSITION_MIN,
-            SPAWN_POSITION_MAX
-        );
-        simState.boardYPos = ParseAndClampFloat(
-            BoardYPos.text,
-            SPAWN_POSITION_MIN,
-            SPAWN_POSITION_MAX
-        );
-        simState.boardZPos = ParseAndClampFloat(
-            BoardZPos.text,
-            SPAWN_POSITION_MIN,
-            SPAWN_POSITION_MAX
-        );
+        simState.boardXPos = ParseAndClampFloat(BoardXPos.text, SPAWN_POSITION_MIN, SPAWN_POSITION_MAX);
+        simState.boardYPos = ParseAndClampFloat(BoardYPos.text, SPAWN_POSITION_MIN, SPAWN_POSITION_MAX);
+        simState.boardZPos = ParseAndClampFloat(BoardZPos.text, SPAWN_POSITION_MIN, SPAWN_POSITION_MAX);
     }
 
     public void ui_lock()
     {
+        LoggingManager.Log(channelName, "ui_lock: Disabling UI buttons");
         SimulationSettingsButton.interactable = false;
         BoardSettingsButton.interactable = false;
     }
 
     public void ui_unlock()
     {
+        LoggingManager.Log(channelName, "ui_unlock: Enabling UI buttons");
         SimulationSettingsButton.interactable = true;
         BoardSettingsButton.interactable = true;
     }
 
     public void RunSimulation()
     {
+        LoggingManager.Log(channelName, "RunSimulation: Attempting to start simulation");
         if (PCBloaded)
         {
-            ShowDebugMessage("Simulation starting. ");
+            ShowDebugMessage("Simulation starting.");
             simState.simNumber = SimNumber;
-            Debug.Log("Sim num: " + SimNumber);
-            GetSimInputs();
+            LoggingManager.Log(channelName, $"RunSimulation: SimNumber set to {SimNumber}");
 
-            // TODO: Show object file and mtl file path in results so user knows which PCB was used
+            GetSimInputs();
             simState.objfilePath = objfilePath;
             simState.mtlfilePath = mtlfilePath;
 
-            // TODO: Make all but end sim button be non-interactable
-            GameObject.Find("RunSimButton").GetComponent<Button>().interactable = false;
-            GameObject.Find("Sim results").GetComponent<Button>().interactable = false;
-            EndSimEarlyButton.gameObject.SetActive(true);
-            InspectionModeButton.gameObject.SetActive(true);
-
+            LoggingManager.Log(channelName, "RunSimulation: Saving simState to JSON");
             simState.SaveSimToJSON(myJsonPath);
 
+            LoggingManager.Log(channelName, $"RunSimulation: Starting whiskerSim with duration {simState.simDuration}");
             whiskerSim.RunSim(SimNumber, simState.simDuration);
             StartCoroutine(EndOfSimActions());
         }
         else
         {
             ShowDebugMessage("No loaded PCB");
+            LoggingManager.Log(channelName, "RunSimulation: Aborted due to no PCB loaded");
         }
     }
 
@@ -396,40 +293,46 @@ public class MainController : MonoBehaviour
         yield return new WaitUntil(() => whiskerSim.NumberSimsRunning == 0);
 
         ShowDebugMessage("Simulation ended.");
+        LoggingManager.Log(channelName, "EndOfSimActions: Simulation completed");
+
         GameObject.Find("Sim results").GetComponent<Button>().interactable = true;
         GameObject.Find("RunSimButton").GetComponent<Button>().interactable = true;
         EndSimEarlyButton.gameObject.SetActive(false);
         InspectionModeButton.gameObject.SetActive(false);
         SimNumber++;
+        LoggingManager.Log(channelName, $"EndOfSimActions: Incremented SimNumber to {SimNumber}");
     }
 
     public void EndSimulationEarly()
     {
-        ShowDebugMessage("User interupt. ");
+        ShowDebugMessage("User interrupt.");
+        LoggingManager.Log(channelName, "EndSimulationEarly: User requested early end");
         whiskerSim.EndSimulationEarly(SimNumber);
     }
 
     public void InspectionModeUI()
     {
-        ShowDebugMessage("User Inspection Mode. ");
+        ShowDebugMessage("User Inspection Mode.");
+        LoggingManager.Log(channelName, "InspectionModeUI: Entering inspection mode");
         InspectionModeButton.gameObject.SetActive(false);
         ClearWhiskersButton.gameObject.SetActive(true);
         whiskerSim.InspectMode(SimNumber);
-
     }
 
     public void ClearWhiskers()
     {
         whiskerSim.ClearWhiskersAfterInspection();
+        LoggingManager.Log(channelName, "ClearWhiskers: Cleared whiskers after inspection");
         ClearWhiskersButton.gameObject.SetActive(false);
     }
 
     public void RunMonteCarloSimulation()
     {
+        LoggingManager.Log(channelName, "RunMonteCarloSimulation: Attempting Monte Carlo run");
         if (PCBloaded)
         {
             simState.simNumber = SimNumber;
-            Debug.Log("Sim num: " + SimNumber);
+            LoggingManager.Log(channelName, $"RunMonteCarloSimulation: SimNumber set to {SimNumber}");
             GetSimInputs();
 
             simState.objfilePath = objfilePath;
@@ -439,32 +342,36 @@ public class MainController : MonoBehaviour
             GameObject.Find("RunSimButton").GetComponent<Button>().interactable = false;
             MonteCarloWaitScreen.gameObject.SetActive(true);
 
+            LoggingManager.Log(channelName, "RunMonteCarloSimulation: Saving simState to JSON");
             simState.SaveSimToJSON(myJsonPath);
 
+            LoggingManager.Log(channelName, "RunMonteCarloSimulation: Calling MonteCarloSim");
             monteCarloSim.RunMonteCarloSim(whiskerSim, SimNumber, simState.simDuration);
             StartCoroutine(EndOfMonteCarloSimActions());
         }
         else
         {
             ShowDebugMessage("No loaded PCB");
+            LoggingManager.Log(channelName, "RunMonteCarloSimulation: Aborted due to no PCB loaded");
         }
     }
 
     IEnumerator EndOfMonteCarloSimActions()
     {
         yield return new WaitUntil(() => monteCarloSim.IsSimulationEnded);
-
         ShowDebugMessage("Monte Carlo simulation ended.");
+        LoggingManager.Log(channelName, "EndOfMonteCarloSimActions: Monte Carlo completed");
+
         GameObject.Find("Run Monte Carlo").GetComponent<Button>().interactable = true;
         GameObject.Find("RunSimButton").GetComponent<Button>().interactable = true;
         MonteCarloWaitScreen.gameObject.SetActive(false);
         SimNumber += monteCarloSim.numSimulations;
-
+        LoggingManager.Log(channelName, $"EndOfMonteCarloSimActions: SimNumber updated to {SimNumber}");
     }
-
 
     public void SwitchToResults()
     {
+        LoggingManager.Log(channelName, "SwitchToResults: Switching to results canvas");
         if (ResultsCanvas != null)
             ResultsCanvas.SetActive(true);
         GameObject.Find("MainCanvas").SetActive(false);
@@ -472,6 +379,7 @@ public class MainController : MonoBehaviour
 
     public void QuitApplication()
     {
+        LoggingManager.Log(channelName, "QuitApplication: Quitting application");
         Debug.Log("Quitting application");
         Debug.Log("Sim number: " + simState.simNumber);
         // Quit the application

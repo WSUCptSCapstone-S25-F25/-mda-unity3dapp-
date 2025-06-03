@@ -51,6 +51,7 @@
      <Compile Include="Assets\Asset Packages\StandAloneFileBrowser\Assets\StandaloneFileBrowserWindows.cs" />
      <Compile Include="Assets\Asset Packages\StandAloneFileBrowser\Assets\Sample\CanvasSampleOpenFileTextMultiple.cs" />
      <Compile Include="Assets\Asset Packages\StandAloneFileBrowser\Assets\IStandaloneFileBrowser.cs" />
+     <Compile Include="Assets\Scripts\LoggingComponents\LogPanelToggler.cs" />
      <Compile Include="Assets\Scripts\Controller\ResultsHandler.cs" />
      <Compile Include="Assets\Scripts\Controller\Tooltip.cs" />
      <Compile Include="Assets\Scripts\Controller\MonteCarloUIPanel.cs" />
@@ -59,6 +60,7 @@
      <Compile Include="Assets\Asset Packages\OBJImport\TextureLoader\TGALoader.cs" />
      <Compile Include="Assets\Asset Packages\StandAloneFileBrowser\Assets\Sample\CanvasSampleSaveFileText.cs" />
      <Compile Include="Assets\Asset Packages\OBJImport\Samples\ObjFromStream.cs" />
+     <Compile Include="Assets\Scripts\LoggingComponents\LoggingUIController.cs" />
      <Compile Include="Assets\Scripts\MainController.cs" />
      <Compile Include="Assets\Asset Packages\StandAloneFileBrowser\Assets\Sample\CanvasSampleOpenFileImage.cs" />
      <Compile Include="Assets\Scripts\Simulation\MonteCarloSim.cs" />
@@ -72,7 +74,6 @@
      <Compile Include="Assets\Asset Packages\OBJImport\MTLLoader.cs" />
      <Compile Include="Assets\Scripts\Controller\PopupManagerSingleton.cs" />
      <Compile Include="Assets\Scripts\Controller\CameraMover.cs" />
-     <Compile Include="Assets\Scripts\Logging\LoggerChannel.cs" />
      <Compile Include="Assets\Scripts\Model\ResultsProcessor.cs" />
      <Compile Include="Assets\Scripts\Controller\SimState.cs" />
      <Compile Include="Assets\Scripts\Controller\BoardController.cs" />
@@ -80,11 +81,10 @@
      <Compile Include="Assets\Asset Packages\OBJImport\TextureLoader\BinaryExtensions.cs" />
      <Compile Include="Assets\Asset Packages\StandAloneFileBrowser\Assets\StandaloneFileBrowserEditor.cs" />
      <Compile Include="Assets\Asset Packages\OBJImport\Samples\ObjFromFile.cs" />
-     <Compile Include="Assets\Scripts\Logging\Logger.cs" />
      <Compile Include="Assets\Asset Packages\OBJImport\TextureLoader\ImageLoader.cs" />
+     <Compile Include="Assets\Scripts\LoggingComponents\LoggingManager.cs" />
      <Compile Include="Assets\Asset Packages\OBJImport\TextureLoader\ImageUtils.cs" />
      <Compile Include="Assets\Scripts\Controller\BoardSettingsPanel.cs" />
-     <Compile Include="Assets\Scripts\Logging\LoggerPanel.cs" />
      <Compile Include="Assets\Scripts\Model\LoadFile.cs" />
      <Compile Include="Assets\Scripts\Controller\SpawnBoxController.cs" />
      <Compile Include="Assets\Asset Packages\StandAloneFileBrowser\Assets\StandaloneFileBrowser.cs" />
@@ -95,12 +95,11 @@
      <Compile Include="Assets\Asset Packages\OBJImport\OBJLoaderHelper.cs" />
      <Compile Include="Assets\Asset Packages\OBJImport\OBJLoader.cs" />
      <Compile Include="Assets\Asset Packages\StandAloneFileBrowser\Assets\Sample\CanvasSampleSaveFileImage.cs" />
-     <Compile Include="Assets\Scripts\Logging\LoggingUtility.cs" />
      <Compile Include="Assets\Asset Packages\OBJImport\TextureLoader\DDSLoader.cs" />
-     <Compile Include="Assets\Scripts\Logging\DebugLogController.cs" />
      <Compile Include="Assets\Asset Packages\StandAloneFileBrowser\Assets\StandaloneFileBrowserMac.cs" />
      <Compile Include="Assets\Scripts\SimulationPhysics\ShortDetector.cs" />
      <Compile Include="Assets\Asset Packages\OBJImport\CharWordReader.cs" />
+     <Compile Include="Assets\Scripts\LoggingComponents\LogToggles.cs" />
      <Compile Include="Assets\Scripts\SimulationPhysics\Shock.cs" />
      <Compile Include="Assets\Scripts\Model\LogormalRandom.cs" />
      <Compile Include="Assets\Scripts\SimulationPhysics\Vibration.cs" />
@@ -168,7 +167,7 @@
      <Folder Include="Assets\Asset Packages\StandAloneFileBrowser\Plugins\MacOS\StandaloneFileBrowser\StandaloneFileBrowser.xcodeproj\project.xcworkspace\xcuserdata\gokhangokce.xcuserdatad" />
      <Folder Include="Assets\Asset Packages\StandAloneFileBrowser\Plugins\MacOS\StandaloneFileBrowser\StandaloneFileBrowser.xcodeproj" />
      <None Include="Assets\Asset Packages\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
-     <Folder Include="Assets\Scripts\Logging" />
+     <Folder Include="Assets\Scripts\LoggingComponents" />
      <Folder Include="Assets\Asset Packages\StandAloneFileBrowser\Plugins\MacOS\StandaloneFileBrowser\StandaloneFileBrowser.xcodeproj\xcuserdata\gokhangokce.xcuserdatad" />
      <Folder Include="Assets\Scripts\SimulationPhysics" />
      <None Include="Assets\Asset Packages\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />

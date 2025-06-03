@@ -1,104 +1,80 @@
 using System;
 using UnityEngine;
 using System.Collections;
-using Logging;
+using LoggingComponents;
 using TMPro;
 
-// All physics occur on Unity main thread. Cannot multi-thread processes.
-
-// TODO: Run batches on simultaneous scenes.
 public class MonteCarloSim : MonoBehaviour
 {
-    // Logging strings --------------------------------
-    private const string channelName = "MonteCarloSim";
-    
-    private static readonly string RunMonteCarloMessage = "--------------------- Started Monte Carlo Instance ---------------------";
-    private static readonly string MonteCarloSimEnd = "Monte Carlo Sim Ended ------------------------------------------";
-    
-    private static readonly string RunBatchMessage = "------------ Starting batch";
-    private static readonly string EndBatchMessage = "------------ Ended batch";
-    
-    // ---------------------------------------------
-    public int numSimulations = 2; // 2 Default
+    private const string channelName = "MonteCarlo";
+
+    public int numSimulations = 2;
     public TextMeshProUGUI NumSimsProgressText;
     public bool IsSimulationEnded;
 
-    private const int MAX_BATCH_SIZE = 10;
-    
-    // [SerializeField] private DebugLogController debugLogController;
-    
+    private const int MAX_BATCH_SIZE = 50;
+
     public void RunMonteCarloSim(WhiskerSim whiskerSim, int simNumber, float duration)
     {
-        var startTime = DateTime.Now;
-        // debugLogController.Log(channelName, RunMonteCarloMessage);
-            
+        DateTime simulationStart = DateTime.Now;
+        LoggingManager.Log(channelName, $"[Simulation {simNumber}] Starting Monte Carlo with {numSimulations} simulations.\n");
+
         IsSimulationEnded = false;
         Time.timeScale = 10.0f;
-        
-        StartCoroutine(RunBatches(whiskerSim, simNumber, duration));
-        
-        var endTime = DateTime.Now;
-        string endMonteCarloMessage = 
-            LoggingUtility.MakeMessageTimeDiff(startTime, endTime, MonteCarloSimEnd);
-        
-        // logger.Log(endMonteCarloMessage);
-        // logger.Log($"Status of logger toggle: {logger.GetEnabled()}");
+        StartCoroutine(RunBatches(whiskerSim, simNumber, duration, simulationStart));
     }
 
-
-        private IEnumerator RunBatches(WhiskerSim whiskerSim, int beginningSimNumber, float duration)
+    private IEnumerator RunBatches(WhiskerSim whiskerSim, int simNumber, float duration, DateTime simulationStart)
     {
         int totalSimulations = numSimulations;
-        int batchStart = beginningSimNumber;
-        int simsRun = 0;
-        int currentBatchCount = 0;
+        int batchStart = simNumber;
+        int simsCompleted = 0;
+        int currentBatch = 0;
         int totalBatches = totalSimulations / MAX_BATCH_SIZE;
-        if(totalSimulations % MAX_BATCH_SIZE != 0)
-            totalBatches++;
-        
-        NumSimsProgressText.text = $"{simsRun} of {numSimulations} Completed";
-        while (batchStart < beginningSimNumber + totalSimulations)
-        {
-            currentBatchCount++;
-            int batchEnd = Mathf.Min(batchStart + MAX_BATCH_SIZE + beginningSimNumber, totalSimulations + beginningSimNumber);
+        if (totalSimulations % MAX_BATCH_SIZE != 0) totalBatches++;
 
-            // logger.Log(RunBatchMessage + $" {currentBatchCount} of {totalBatches}");
-            
+        NumSimsProgressText.text = $"{simsCompleted} of {numSimulations} Completed";
+
+        while (batchStart < simNumber + totalSimulations)
+        {
+            currentBatch++;
+            int batchEnd = Mathf.Min(batchStart + MAX_BATCH_SIZE, simNumber + totalSimulations);
+
             DateTime batchStartTime = DateTime.Now;
             yield return RunBatch(whiskerSim, batchStart, batchEnd, duration);
             DateTime batchEndTime = DateTime.Now;
 
-            string log = LoggingUtility.MakeMessageTimeDiff(batchStartTime, batchEndTime, EndBatchMessage);
-            // logger.Log(log);
+            double batchDuration = (batchEndTime - batchStartTime).TotalSeconds;
+            LoggingManager.Log(channelName, $"[Simulation {simNumber}] Completed batch {currentBatch}/{totalBatches} in {batchDuration:F3}s.");
 
-            simsRun += batchEnd - batchStart;
-            
+            simsCompleted += (batchEnd - batchStart);
             batchStart = batchEnd;
-            NumSimsProgressText.text = $"{simsRun} of {numSimulations} Completed";
+            NumSimsProgressText.text = $"{simsCompleted} of {numSimulations} Completed";
         }
 
-        StartCoroutine(EndActions(whiskerSim, beginningSimNumber));
+        DateTime simulationEnd = DateTime.Now;
+        double totalDuration = (simulationEnd - simulationStart).TotalSeconds;
+        LoggingManager.Log(channelName, $"[Simulation {simNumber}] All batches complete. Total duration: {totalDuration:F3}s.");
+
+        StartCoroutine(EndActions(whiskerSim, simNumber, totalDuration));
     }
 
     private IEnumerator RunBatch(WhiskerSim whiskerSim, int batchStart, int batchEnd, float duration)
     {
-        // Debug.Log($"Running simulations from {batchStart} to {batchEnd - 1}");
         for (int i = batchStart; i < batchEnd; i++)
         {
             whiskerSim.RunSim(i, duration, false);
-            
-            // Yield return null allows Unity to update the UI and restart physics.
             yield return null;
         }
         yield return new WaitUntil(() => whiskerSim.NumberSimsRunning == 0);
     }
 
-    private IEnumerator EndActions(WhiskerSim whiskerSim, int beginningSimNumber)
+    private IEnumerator EndActions(WhiskerSim whiskerSim, int simNumber, double totalDuration)
     {
-        // Debug.Log("End of monte carlo sim");
         Time.timeScale = 1.0f;
-        ResultsProcessor.LogSimStateToMonteCarlo(whiskerSim.SimState, beginningSimNumber, numSimulations);
-        ResultsProcessor.LogMonteCarloResults(beginningSimNumber, numSimulations);
+        ResultsProcessor.LogSimStateToMonteCarlo(whiskerSim.SimState, simNumber, numSimulations);
+        ResultsProcessor.LogMonteCarloResults(simNumber, numSimulations);
+        LoggingManager.Log(channelName, $"[Simulation {simNumber}] Completed logging results. Overall run #{simNumber} finished in {totalDuration:F3}s.");
         IsSimulationEnded = true;
         yield return null;
     }

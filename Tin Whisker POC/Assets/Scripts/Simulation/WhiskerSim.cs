@@ -3,11 +3,14 @@ using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using System.IO;
+using LoggingComponents;
 using SimInfo;
 using UnityEngine.Serialization;
 
 public class WhiskerSim : MonoBehaviour
 {
+    private const string channelName = "WhiskerSim";
+
     public ShortDetector ShortDetector;
     public SimState SimState;
     public GameObject Whisker; // Cylinder/Whisker to clone
@@ -26,6 +29,7 @@ public class WhiskerSim : MonoBehaviour
 
     public void RunSim(int simNumber, float duration, bool render = true)
     {
+        LoggingManager.Log(channelName, $"RunSim: Starting simulation #{simNumber} duration={duration} render={render}");
         string layerName = $"Sim layer {simNumber % 10 + 1}";  // For 10 physics layers
         NumberSimsRunning++;
         this.duration = duration;
@@ -38,6 +42,7 @@ public class WhiskerSim : MonoBehaviour
         if (layer == -1)
         {
             Debug.LogError($"Layer '{layerName}' does not exist. Please create this layer in the Tags and Layers settings.");
+            LoggingManager.Log(channelName, $"RunSim: Aborted because layer '{layerName}' does not exist");
             return;
         }
 
@@ -46,25 +51,25 @@ public class WhiskerSim : MonoBehaviour
 
         if (shockController.shocking)
         {
-            Debug.Log("Starting shock...");
+            LoggingManager.Log(channelName, "RunSim: Starting shock");
             Shock.StartShock();
         }
 
         if (vibrationController.vibrate)
         {
-            Debug.Log("Starting vibration...");
+            LoggingManager.Log(channelName, "RunSim: Starting vibration");
             Vibration.StartVibration();
         }
 
-        // TODO: Decouple results processor from the whisker sim.
-        // ** This process should be taken care of in the controller **
-        // ----------------------- Class coupling -----------------------------------------
-        // Log all whiskers to whisker_log_{simNumber}
         ResultsProcessor.LogWhiskers(GetSimLayerWhiskers(whiskers, layerName), simNumber);
-        // Log the SimState to other results files
+        LoggingManager.Log(channelName, $"RunSim: Logged whiskers for simulation #{simNumber}");
+
         ResultsProcessor.LogSimState(SimState, simNumber);
+        LoggingManager.Log(channelName, $"RunSim: Logged SimState for simulation #{simNumber}");
+
         simulationCoroutine = StartCoroutine(EndSimulationAfterDuration(simNumber));
         ShortDetector.GetComponent<ShortDetector>().StartWhiskerChecks(whiskerColliders, simNumber);
+        LoggingManager.Log(channelName, $"RunSim: Detection checks started for simulation #{simNumber}");
     }
 
     public void ScaleCylinder(GameObject cylinderObject, float widthScale, float heightScale)
@@ -75,26 +80,21 @@ public class WhiskerSim : MonoBehaviour
             return;
         }
 
-        // Get the current scale of the cylinder object
         Vector3 currentScale = cylinderObject.transform.lossyScale;
-
-        // Calculate the width and height based on the current scale
         float width = currentScale.x * widthScale;
         float height = currentScale.y * heightScale;
-
-        // Calculate the new scale based on the scaled width and height
         Vector3 newScale = new Vector3(
             width, // Width
             height, // Height
             width  // Depth 
         );
-
-        // Apply the new scale to the cylinder object
         cylinderObject.transform.localScale = newScale;
+        LoggingManager.Log(channelName, $"ScaleCylinder: Scaled cylinder {cylinderObject.name} to {newScale}");
     }
 
     public void ClearLayerWhiskers(string layerNameToDelete)
     {
+        LoggingManager.Log(channelName, $"ClearLayerWhiskers: Clearing whiskers on layer '{layerNameToDelete}'");
         int layerNum = LayerMask.NameToLayer(layerNameToDelete);
         foreach (GameObject whisker in whiskers)
         {
@@ -103,40 +103,41 @@ public class WhiskerSim : MonoBehaviour
                 DestroyImmediate(whisker);
             }
         }
-
         whiskers.RemoveAll(whisker => whisker == null);
+        LoggingManager.Log(channelName, $"ClearLayerWhiskers: Completed clearing layer '{layerNameToDelete}'");
     }
 
     public void SaveResults(int simNumber)
     {
-        Debug.Log($"Saving sim number: {simNumber}");
+        LoggingManager.Log(channelName, $"SaveResults: Saving results for simulation #{simNumber}");
         SimState.SaveSimToJSON(myjsonPath);
         ShortDetector.StopWhiskerChecks(simNumber);
+        LoggingManager.Log(channelName, $"SaveResults: Results saved and detection stopped for simulation #{simNumber}");
     }
 
     private void SimStateSetUp(int simNumber)
     {
-        Debug.Log("Sim number: " + simNumber);
-
+        LoggingManager.Log(channelName, $"SimStateSetUp: Preparing state for simulation #{simNumber}");
         myjsonPath = Application.persistentDataPath + "/SimState.JSON";
         if (File.Exists(myjsonPath))
         {
-            // JSON folder exists, read data from file and initialize SimState object
             string jsonString = File.ReadAllText(myjsonPath);
             SimState = JsonUtility.FromJson<SimState>(jsonString);
             SimState.simNumber = simNumber;
+            LoggingManager.Log(channelName, $"SimStateSetUp: Loaded existing SimState for simulation #{simNumber}");
         }
         else
         {
-            // JSON folder doesn't exist, create SimState object with default constructor
             SimState = new SimState();
             SimState.SaveSimToJSON(myjsonPath);
             SimState.simNumber = simNumber;
+            LoggingManager.Log(channelName, $"SimStateSetUp: Created new SimState and saved for simulation #{simNumber}");
         }
     }
 
     private List<WhiskerCollider> SpawnWhiskers(string layerName)
     {
+        LoggingManager.Log(channelName, $"SpawnWhiskers: Spawning whiskers on '{layerName}'");
         List<WhiskerCollider> whiskerColliders = new List<WhiskerCollider>();
         Whisker.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         Vector3 originalScale = Whisker.transform.localScale;
@@ -156,12 +157,14 @@ public class WhiskerSim : MonoBehaviour
         {
             WhiskerCount = 1000;
             Debug.LogError("Whisker count is too high. Whisker count: " + WhiskerCount);
+            LoggingManager.Log(channelName, $"SpawnWhiskers: Whisker count too high, clamped to {WhiskerCount}");
         }
 
         int layer = LayerMask.NameToLayer(layerName);
         if (layer == -1)
         {
             Debug.LogError($"Layer '{layerName}' does not exist. Cannot assign layer to whiskers.");
+            LoggingManager.Log(channelName, $"SpawnWhiskers: Aborting because layer '{layerName}' not found");
             return whiskerColliders;
         }
 
@@ -178,10 +181,7 @@ public class WhiskerSim : MonoBehaviour
             newWhisker.layer = layer; // Assign valid layer
             newWhisker.name = $"Whisker{i}";
 
-            // Make Whisker visible
             newWhisker.GetComponent<MeshRenderer>().enabled = render;
-
-            // Enable Whisker collisions
             Collider collider = newWhisker.GetComponent<Collider>();
             if (collider != null)
                 collider.enabled = true;
@@ -197,6 +197,7 @@ public class WhiskerSim : MonoBehaviour
             whiskerColliders.Add(whiskerCollider);
         }
 
+        LoggingManager.Log(channelName, $"SpawnWhiskers: Created {whiskerColliders.Count} whiskers on layer '{layerName}'");
         return whiskerColliders;
     }
 
@@ -205,51 +206,54 @@ public class WhiskerSim : MonoBehaviour
         if (Shock != null)
         {
             Shock.StopShock(); // Stops the shock logic
+            LoggingManager.Log(channelName, "StopShockAndVibrationRoutines: Shock stopped");
         }
 
         if (Vibration != null)
         {
             Vibration.StopVibration(); // Stops the vibration logic
+            LoggingManager.Log(channelName, "StopShockAndVibrationRoutines: Vibration stopped");
         }
     }
 
     IEnumerator EndSimulationAfterDuration(int simNumber)
     {
-        // Check if simState and its duration are set, otherwise use a default value
         float simulationDuration = duration >= 0.1 ? duration : 10f;
+        LoggingManager.Log(channelName, $"EndSimulationAfterDuration: Waiting {simulationDuration} seconds for simulation #{simNumber}");
 
-        // Wait for the specified simulation duration
         yield return new WaitForSeconds(simulationDuration);
 
         SaveResults(simNumber);
         ClearLayerWhiskers($"Sim layer {simNumber % 10 + 1}");
         StopShockAndVibrationRoutines();
         mainController.ui_unlock();
-        yield return null;
+        LoggingManager.Log(channelName, $"EndSimulationAfterDuration: Simulation #{simNumber} ended and cleaned up");
 
-        // Proceed to call cleanup for all WhiskerCollider instances
         foreach (WhiskerCollider whiskerCollider in FindObjectsOfType<WhiskerCollider>())
             whiskerCollider.Cleanup();
         NumberSimsRunning--;
+        LoggingManager.Log(channelName, $"EndSimulationAfterDuration: NumberSimsRunning decremented to {NumberSimsRunning}");
+        yield return null;
     }
 
     public void EndSimulationEarly(int simNumber)
     {
-        // Stop the coroutine that is waiting for the simulation to end
+        LoggingManager.Log(channelName, $"EndSimulationEarly: Early end requested for simulation #{simNumber}");
         StopCoroutine(simulationCoroutine);
         SaveResults(simNumber);
         ClearLayerWhiskers($"Sim layer {simNumber % 10 + 1}");
         StopShockAndVibrationRoutines();
         mainController.ui_unlock();
         NumberSimsRunning--;
+        LoggingManager.Log(channelName, $"EndSimulationEarly: Simulation #{simNumber} ended early, NumberSimsRunning now {NumberSimsRunning}");
     }
 
     public void InspectMode(int simNumber)
     {
+        LoggingManager.Log(channelName, $"InspectMode: Entering inspection mode for simulation #{simNumber}");
         StopCoroutine(simulationCoroutine); // Stop the active simulation coroutine, if any
         StopShockAndVibrationRoutines(); // Stop any shock and vibration routines
         SaveResults(simNumber);
-        // Remove Rigidbody from all whiskers
         foreach (GameObject whisker in whiskers)
         {
             Rigidbody rb = whisker.GetComponent<Rigidbody>();
@@ -258,15 +262,17 @@ public class WhiskerSim : MonoBehaviour
                 Destroy(rb); // Remove the rigidbody to stop all physics interactions
             }
         }
-
         NumberSimsRunning--; // Decrement running simulation count
+        LoggingManager.Log(channelName, $"InspectMode: Inspection mode complete, NumberSimsRunning now {NumberSimsRunning}");
     }
 
-        // Function to clear whiskers after inspection
+    // Function to clear whiskers after inspection
     public void ClearWhiskersAfterInspection()
     {
+        LoggingManager.Log(channelName, $"ClearWhiskersAfterInspection: Clearing whiskers after inspection for sim #{SimState.simNumber}");
         ClearLayerWhiskers($"Sim layer {SimState.simNumber % 10 + 1}"); // Clear the whiskers from the layer
         mainController.ui_unlock();
+        LoggingManager.Log(channelName, "ClearWhiskersAfterInspection: UI unlocked after inspection");
     }
 
     private List<GameObject> GetSimLayerWhiskers(List<GameObject> allWhiskers, string layerName)

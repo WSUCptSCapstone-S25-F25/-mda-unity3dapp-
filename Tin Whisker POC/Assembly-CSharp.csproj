@@ -63,9 +63,9 @@
      <Compile Include="Assets\Scripts\LoggingComponents\LoggingUIController.cs" />
      <Compile Include="Assets\Scripts\MainController.cs" />
      <Compile Include="Assets\Asset Packages\StandAloneFileBrowser\Assets\Sample\CanvasSampleOpenFileImage.cs" />
-     <Compile Include="Assets\Scripts\Simulation\MonteCarloSim.cs" />
+     <Compile Include="Assets\Scripts\WhiskerSimComponents\MonteCarloSim.cs" />
      <Compile Include="Assets\Scripts\Model\ComponentHeatMap.cs" />
-     <Compile Include="Assets\Scripts\Simulation\WhiskerSim.cs" />
+     <Compile Include="Assets\Scripts\WhiskerSimComponents\WhiskerSim.cs" />
      <Compile Include="Assets\Scripts\Controller\VibrationController.cs" />
      <Compile Include="Assets\Scripts\Controller\BoundingBoxCalculator.cs" />
      <Compile Include="Assets\Asset Packages\OBJImport\OBJObjectBuilder.cs" />
@@ -133,7 +133,7 @@
      <None Include="Assets\Asset Packages\StandAloneFileBrowser\Plugins\MacOS\StandaloneFileBrowser\Plugin.mm" />
      <Folder Include="Assets\PCB Files\TestPCBFromStep" />
      <Folder Include="Assets\PCB Files\BigSplitTest" />
-     <Folder Include="Assets\Scripts\Simulation" />
+     <Folder Include="Assets\Scripts\WhiskerSimComponents" />
      <None Include="Assets\Asset Packages\StandAloneFileBrowser\LICENSE.txt" />
      <Folder Include="Assets\Asset Packages\StandAloneFileBrowser\Plugins\MacOS\StandaloneFileBrowser\StandaloneFileBrowser.xcodeproj\xcuserdata\tonidurans.xcuserdatad\xcschemes" />
      <None Include="Assets\Asset Packages\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />

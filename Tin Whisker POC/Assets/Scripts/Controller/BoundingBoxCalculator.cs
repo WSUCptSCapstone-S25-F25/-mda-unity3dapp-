@@ -1,16 +1,19 @@
 using UnityEngine;
 
-public class BoundingBoxCalculator
+namespace Controller
 {
-    public static Vector3 CalculateTotalBounds(GameObject gameObject)
+    public class BoundingBoxCalculator
     {
-        Bounds combinedBounds = new Bounds(gameObject.transform.position, Vector3.zero);
-        
-        foreach (Renderer renderer in gameObject.GetComponentsInChildren<Renderer>())
+        public static Vector3 CalculateTotalBounds(GameObject gameObject)
         {
-            combinedBounds.Encapsulate(renderer.bounds);
-        }
+            Bounds combinedBounds = new Bounds(gameObject.transform.position, Vector3.zero);
+        
+            foreach (Renderer renderer in gameObject.GetComponentsInChildren<Renderer>())
+            {
+                combinedBounds.Encapsulate(renderer.bounds);
+            }
 
-        return combinedBounds.size;
+            return combinedBounds.size;
+        }
     }
 }

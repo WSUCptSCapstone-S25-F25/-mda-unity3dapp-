@@ -10,6 +10,7 @@ TagManager:
   - ResultsMenu
   - ScaleGrid
   - Conductive
+  - Whisker
   layers:
   - Default
   - TransparentFX

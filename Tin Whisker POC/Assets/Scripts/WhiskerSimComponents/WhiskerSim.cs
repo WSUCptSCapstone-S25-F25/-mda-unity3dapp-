@@ -1,16 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using Controller;
 using LoggingComponents;
-using SimInfo;
+using Model;
+using SimulationPhysics;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Util;
 using Random = UnityEngine.Random;
 
 namespace WhiskerSimComponents
 {
     public class WhiskerSim : MonoBehaviour
     {
+
+        private System.Random rng = new System.Random();
+                
         private const string channelName = "WhiskerSim";
 
         public ShortDetector ShortDetector;
@@ -152,8 +158,6 @@ namespace WhiskerSimComponents
             Whisker.transform.localScale = scaledTransform;
 
             float WhiskerCount = SimState.whiskerAmount;
-            LognormalRandom lognormalRandomLength = new LognormalRandom(SimState.LengthMu, SimState.LengthSigma);
-            LognormalRandom lognormalRandomWidth = new LognormalRandom(SimState.WidthMu, SimState.WidthSigma);
 
             if (WhiskerCount > 1000)
             {
@@ -190,8 +194,8 @@ namespace WhiskerSimComponents
 
                 whiskers.Add(newWhisker);
 
-                float lengthMultiplier = (float)lognormalRandomLength.Next();
-                float widthMultiplier = (float)lognormalRandomWidth.Next();
+                float lengthMultiplier = (float) WhiskerTransformerUtil.NextLognormal(SimState.LengthMu, SimState.LengthSigma, rng);
+                float widthMultiplier = (float) WhiskerTransformerUtil.NextLognormal(SimState.WidthMu, SimState.WidthSigma, rng);
 
                 ScaleCylinder(newWhisker, widthMultiplier, lengthMultiplier);
                 WhiskerCollider whiskerCollider = newWhisker.GetComponent<WhiskerCollider>();

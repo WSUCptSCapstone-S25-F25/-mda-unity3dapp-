@@ -21,11 +21,6 @@ namespace LoggingComponents
 
         private void Awake()
         {
-            if (LogToggles.Instance == null)
-            {
-                Debug.LogError("[LoggingUIController] No LogToggles instance found! Please add a GameObject with LogToggles.cs to the scene.");
-            }
-
             if (enableLogFileToggle != null)
             {
                 enableLogFileToggle.isOn = false;

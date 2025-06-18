@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using LoggingComponents;
+using Model;
 using TMPro;
 using UnityEngine;
 

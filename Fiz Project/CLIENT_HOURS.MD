@@ -46,7 +46,7 @@ The client also reconfirmed that the website would be on a WordPress domain, so 
 </ul>
  <h3>This needs improvement:</h3> 
 <ul>
- <li>Still need detailed specifications from the client on exact reporting requirements (e.g., usage reports, volunteer hour logs).</li> 
+ <li>Still need detailed specifications from the client on exact reporting requirements.</li> 
 <li>Need to establish a workflow for syncing progress with the website team.</li>
  </ul> 
 <h3>Changes to implement ASAP:</h3>

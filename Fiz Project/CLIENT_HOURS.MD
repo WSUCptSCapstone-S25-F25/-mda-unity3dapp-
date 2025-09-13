@@ -35,7 +35,7 @@ We asked for clarification about the website team working on the frontend, while
 </ul> 
 <h2>Minutes</h2> 
 <p>The client confirmed that they had the hardware (a Cougar Card reader and barcode scanner) that we can access to integrate into our database. They have both tested and confirmed working conditions, and had recently installed the latest drivers. The client also expects it to be completely IT approved shortly.
-We had a new addition to our database team, Alan Sun. After we went over our project requirements, a very early Entity-Relationship diagram was shared with the client through Teams. The client also further emphasized that the default state of the application is the clientele-facing page. Volunteers should see a different sign-in option. Our database structure must implement separate data models for both clients and volunteers.
+A very early Entity-Relationship diagram was shared with the client through Teams. The client also further emphasized that the default state of the application is the clientele-facing page. Volunteers should see a different sign-in option. Our database structure must implement separate data models for both clients and volunteers.
 The client also reconfirmed that the website would be on a WordPress domain, so we will need our database to be available to that platform in some manner. Our short-term deliverable will be a collaborative specification report, where we outline the website and database details.</p>
 <h2>Retrospective Summary</h2> 
 <h3>This went well:</h3> 

@@ -4,19 +4,19 @@
         <title> Inventory </title>
     </head>
 
-    <body>
-        <table border="1">
+    <body> <h1> Items: </h1>
+        <table border="1"> 
             <tr>
                 <th>ID</th> <th>Name</th> <th>Category</th> <th>Quantity</th> <th>Exp Date</th>
             </tr>
             
             {% for item in items %}
             <tr>
-                <td> {{ item.ItemID}} </td>
-                <td> {{ item.Name}} </td>
-                <td> {{ item.Category}} </td>
-                <td> {{ item.Quantity}} </td>
-                <td> {{ item.Exp_date}} </td>
+                <td> {{ item.ItemID }} </td>
+                <td> {{ item.Name }} </td>
+                <td> {{ item.Category }} </td>
+                <td> {{ item.Quantity }} </td>
+                <td> {{ item.Exp_date }} </td>
             </tr>
             {% endfor %}
 

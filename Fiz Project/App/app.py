@@ -41,14 +41,14 @@ def inventory():
     return render_template('inventory.html', items = items)
 
 # route to add an item
-@app.route('/add_item')
+@app.route('/add_item', methods = ['GET', 'POST'])
 def add_item():
     if request.method == 'POST':
         name = request.form['name']
         category = request.form['category']
         quantity = request.form['quantity']
         exp_date = request.form['exp_date']
-        barcode = request.form['barcode', None]
+        barcode = request.form['barcode']
 
         db_connection = get_db_connection()
 

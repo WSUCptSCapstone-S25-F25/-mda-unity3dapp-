@@ -7,40 +7,77 @@ CREATE TABLE Items (
     Name VARCHAR(100) NOT NULL,
     Category VARCHAR(100) NOT NULL,
     Quantity INT NOT NULL DEFAULT 0,
-    Exp_date DATE,
+    ExpDate DATE,
     Barcode VARCHAR(255) UNIQUE
 );
 
 -- Table for students
 CREATE TABLE Students (
     StudentId INT AUTO_INCREMENT PRIMARY KEY,
-    QR_Code VARCHAR(255) UNIQUE
+    CougarId INT NOT NULL,
+    Name VARCHAR(100) NOT NULL,
+    Email VARCHAR(100) NOT NULL UNIQUE,
+    Major VARCHAR(100) NOT NULL,
+    QRCode VARCHAR(255) UNIQUE,
+    Username VARCHAR(50) NOT NULL UNIQUE,
+    PasswordHash VARCHAR(255)
 );
 
 -- Table for volunteers
 CREATE TABLE Volunteers (
-    VolunteerID INT AUTO_INCREMENT PRIMARY KEY,
+    VolunteerId INT AUTO_INCREMENT PRIMARY KEY,
+    StudentId INT NOT NULL,
+    Phone VARCHAR(100) NOT NULL,
+    FOREIGN KEY (StudentId) REFERENCES Students(StudentId)
+        ON DELETE CASCADE
+);
+
+-- Table for Donors
+-- CREATE TABLE Donors (
+--     DonorId INT AUTO_INCREMENT PRIMARY KEY,
+--     Name VARCHAR(100) NOT NULL,
+--     Email VARCHAR(100) NOT NULL UNIQUE,
+--     Phone VARCHAR(100) NOT NULL,
+-- );
+
+-- Table for Admins
+CREATE TABLE Admins (
+    AdminId INT AUTO_INCREMENT PRIMARY KEY,
     Name VARCHAR(100) NOT NULL,
-    Role VARCHAR(50),
-    Password VARCHAR(255)
+    Email VARCHAR(100) NOT NULL UNIQUE,
+    Phone VARCHAR(100) NOT NULL,
+    Username VARCHAR(50) NOT NULL UNIQUE,
+    PasswordHash VARCHAR(255)
 );
 
 -- Table for recording pantry usage by students
 CREATE TABLE PantryUsage (
-    UsageID INT AUTO_INCREMENT PRIMARY KEY,
+    UsageId INT AUTO_INCREMENT PRIMARY KEY,
     StudentId INT NOT NULL,
-    Visit_date DATE DEFAULT (CURRENT_DATE),
-    Total_items INT DEFAULT 0,
+    VisitDate DATE DEFAULT (CURRENT_DATE),
+    TotalItems INT DEFAULT 0,
     FOREIGN KEY (StudentId) REFERENCES Students(StudentId)
+        ON DELETE CASCADE
+);
+
+-- Table for Items Taken 
+CREATE TABLE ItemsTaken (
+    ItemTakenId INT AUTO_INCREMENT PRIMARY KEY,
+    UsageId INT NOT NULL,
+    ItemId INT NOT NULL,
+    QuantityTaken INT NOT NULL,
+    FOREIGN KEY (UsageId) REFERENCES PantryUsage(UsageId)
+        ON DELETE CASCADE,
+    FOREIGN KEY (ItemId) REFERENCES Items(ItemId)
         ON DELETE CASCADE
 );
 
 -- Table for volunteer shifts
 CREATE TABLE Shifts (
     ShiftId INT AUTO_INCREMENT PRIMARY KEY,
-    Shift_date DATE NOT NULL,
-    Shift_start TIME NOT NULL,
-    Shift_end TIME NOT NULL
+    ShiftDate DATE NOT NULL,
+    StartTime TIME NOT NULL,
+    EndTime TIME NOT NULL
 );
 
 -- Table for volunteer hours
@@ -48,7 +85,7 @@ CREATE TABLE VolunteerHours (
     HoursId INT AUTO_INCREMENT PRIMARY KEY,
     VolunteerID INT NOT NULL,
     ShiftId INT NOT NULL,
-    Worked_hours INT,
+    WorkedHours INT,
     FOREIGN KEY (VolunteerID) REFERENCES Volunteers(VolunteerID)
         ON DELETE CASCADE,
     FOREIGN KEY (ShiftId) REFERENCES Shifts(ShiftId)

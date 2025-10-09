@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Edit Item
+        </title>
+    </head>
+
+    <body> <h1>Editing Item {{ item.Name }}</h1>
+        <form method="post">
+            Name: <input type="text" name="name" value="{{ item.Name }}" required> <br>
+            Category: <input type="text" name="category" value="{{ item.Category }}"  required> <br>
+            Quantity: <input type="number" name="quantity" value="{{ item.Quantity }}"  required> <br>
+            Expiration Date: <input type="date" name="exp_date" value="{{ item.ExpDate }}"  required> <br>
+            <button type="submit">Save</button>
+            <a href = "{{ url_for ('inventory') }}"> <button type="button"> CANCEL </button> </a>
+        </form>
+    </body>
+    
+</html>

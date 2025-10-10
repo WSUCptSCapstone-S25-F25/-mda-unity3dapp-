@@ -48,7 +48,7 @@ def add_item():
         category = request.form['category']
         quantity = request.form['quantity']
         exp_date = request.form['exp_date']
-        barcode = request.form['barcode']
+        barcode = request.form['barcode'] or None
 
         db_connection = get_db_connection()
 
@@ -98,5 +98,16 @@ def edit_item(item_id):
 
 
 
+# route to delete an item
+@app.route('/delete_item/<int:item_id>', methods = ['GET', 'POST'])
+def delete_item(item_id):
 
+    db_connection = get_db_connection()
+    cursor = db_connection.cursor()
 
+    cursor.execute ("DELETE FROM Items WHERE ItemId = %s", (item_id,))
+    db_connection.commit()
+    cursor.close()
+    db_connection.close()
+
+    return redirect(url_for('inventory'))

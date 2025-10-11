@@ -23,8 +23,8 @@ This front end serves as a testing and validation tool for the local database, e
 
 ### 1. Python 3
 If not installed: 
-
-''' winget install Python.Python.3 '''
+``` bash
+winget install Python.Python.3 ```
 
 
 ### 2. MySQL 8.0 server 

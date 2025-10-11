@@ -34,13 +34,15 @@ Download from: https://dev.mysql.com/downloads/mysql/
 
 ### 3.Flask
 If not installed: 
-
+``` bash
 > pip install flask
+```
 
 ### 4.  Mysql.connector 
 If not installed: 
-
+``` bash
 > pip install flask mysql-connector-python
+```
 
 ## Running  App
 - Go to App directory and open terminal.
@@ -50,28 +52,27 @@ If not installed:
 
 ## File Structure and Explanations
 
+``` bash
 App/
-
-    app.py # Main Flask application, handles routes, SQL queries, and form processing
-
-    templates/ # HTML templates for front-end pages
-
-        home.html # Homepage
-
-        inventory.html # Displays inventory table
-
-        add_item.html # Form to add a new inventory item
-
-        edit_item.html # Form to edit an existing inventory item
-    
-    DB Files/ # Contains database files
-
-        schema.sql # SQL file defining database tables
-
-        seed_data.sql # test data for initial setup
-        
-    README.md # This documentation file
-
+│
+├── pycache/ # Compiled Python files
+│
+├── DB Files/ # Database schema and seed data
+│ ├── schema.sql
+│ └── seed_data.sql
+│
+├── static/ # Static files (CSS, JS, images)
+│
+├── templates/ # HTML templates
+│ ├── add_item.html
+│ ├── edit_item.html
+│ ├── home.html
+│ └── inventory.html
+│
+├── app.py # Main Flask application
+│
+└── README.md # Project documentation
+```
 
 ## Future Improvements
 Add support for student visits and volunteer management 

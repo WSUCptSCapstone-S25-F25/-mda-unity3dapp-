@@ -10,7 +10,7 @@ The system allows pantry staff and volunteers to:
 - Interact with a local MySQL database through a Flask web interface
 
 
-###Technologies Used
+### Technologies Used
 - Python Flask – web framework for the front-end interface  
 - MySQL – relational database for persistent storage  
 - mysql-connector-python – library for connecting Flask to MySQL  

@@ -46,7 +46,10 @@ If not installed:
 
 ## Running  App
 - Go to App directory and open terminal.
-- In terminal run: App> python -m flask run
+- In terminal run:
+``` bash
+\Fiz Project\App> python -m flask run
+```
 - Open in browser: http://127.0.0.1:5000/
 
 

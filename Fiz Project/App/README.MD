@@ -38,7 +38,7 @@ If not installed:
 > pip install flask
 ```
 
-### 4.  Mysql.connector 
+### 4.  MySQL Connector 
 If not installed: 
 ``` bash
 > pip install flask mysql-connector-python

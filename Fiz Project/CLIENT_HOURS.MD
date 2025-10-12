@@ -54,3 +54,38 @@ The client also reconfirmed that the website would be on a WordPress domain, so 
 <li>Collaborate with the website team to define database endpoints and data exchange format.</li>
  </ul>
 <h2>Agenda (<em>10/2/2025</em>)</h2> <ul> <li>Review and feedback on current database schema.</li> <li>Discussion on user roles and relationships between entities.</li> <li>Determining additional tables and reporting requirements.</li> </ul> <h2>Minutes</h2> <p>Cristobal met with our client, <strong>Maynard Siev</strong>, to discuss continued progress on the Voiland Food Pantry &amp; Wellness Center Data Tracker project. The discussion focused on the database structure and refining the Entity-Relationship (ER) model.</p> <p>The client approved the overall schema direction and suggested improvements for better data organization. Maynard emphasized adding a <strong>Donors</strong> table to record contributions, donation sources, and frequencies. He also confirmed that <strong>volunteers will only consist of students</strong>, meaning the <em>Student</em> and <em>Volunteer</em> tables should be related in the schema.</p> <p>Three main user types were finalized: <strong>Administrators</strong>, <strong>Students (main users)</strong>, and <strong>Volunteers</strong>. Each will have distinct access privileges and user interfaces suited to their role. The client also requested that the database support <strong>reporting on items nearing expiration</strong> to help manage inventory rotation and reduce waste.</p> <h2>Retrospective Summary</h2> <h3>This went well:</h3> <ul> <li>Received clear feedback to refine database schema and entity relationships.</li> <li>Confirmed user role hierarchy: Admin, Student, and Volunteer.</li> <li>Identified new feature requirements for donor tracking and near-expiry item reports.</li> </ul> <h3>This needs improvement:</h3> <ul> <li>Define precise access permissions and restrictions for each user type.</li> <li>Clarify how donor data connects to inventory and reporting functionalities.</li> <li>Plan for implementing automated expiry alerts or reporting scripts.</li> </ul> <h3>Changes to implement ASAP:</h3> <ul> <li>Add a <strong>Donors</strong> table and link it with the <em>Inventory</em> table.</li> <li>Update ER diagram to show the relationship between <em>Students</em> and <em>Volunteers</em>.</li> <li>Implement logic for generating <strong>reports on soon-to-expire items</strong>.</li> <li>Document access levels and privileges for each user type.</li> </ul>
+
+<h2>Agenda (<em>10/8/2025</em>)</h2>
+<ul>
+  <li>Coordinate progress between the database and website teams.</li>
+  <li>Confirm MVP goals for the next sprint.</li>
+  <li>Discuss scanner functionality and inventory tracking priorities.</li>
+</ul>
+
+<h2>Minutes</h2>
+<p>
+A joint meeting was held with the database team, website team, and clients Maynard Siev and Alena Hume. The discussion focused on coordinating progress between both teams and ensuring that each group’s deliverables align for the next development phase. The client reaffirmed that the WordPress platform will serve as the main website interface for students and volunteers.
+
+The website team emphasized the need to define a clear data exchange structure between the two teams to simplify integration later in the semester. The group discussed the upcoming sprint’s objectives, which include focusing on inventory management and barcode scanner testing as the next major milestone. The client also mentioned a potential on-site visit to the Voiland Food Pantry to better understand the current check-in process and hardware setup.
+</p>
+
+<h2>Retrospective Summary</h2>
+
+<h3>This went well:</h3>
+<ul>
+  <li>Confirmed WordPress as the official front-end platform for the project.</li>
+  <li>Established clear sprint goals focusing on inventory and scanner integration.</li>
+</ul>
+
+<h3>This needs improvement:</h3>
+<ul>
+  <li>Continue defining the data exchange format for compatibility between the WordPress and MySQL databases.</li>
+  <li>Improve communication rhythm between both teams for status updates and shared milestones.</li>
+</ul>
+
+<h3>Changes to implement ASAP:</h3>
+<ul>
+  <li>Finalize export and import scripts for WordPress integration testing.</li>
+  <li>Schedule the planned on-site pantry visit during mid-October for system observation.</li>
+</ul>
+

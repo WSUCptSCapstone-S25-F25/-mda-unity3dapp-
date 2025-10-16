@@ -111,3 +111,31 @@ def delete_item(item_id):
     db_connection.close()
 
     return redirect(url_for('inventory'))
+
+# route to register
+@app.route('/register', methods = ['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        firstname = request.form['firstname']
+        lastname = request.form['lastname']
+        email = request.form['email']
+        studentID = request.form['studentID']
+        major = request.form['major']
+        username = request.form['username']
+        password = request.form['password']
+
+        db_connection = get_db_connection()
+
+        if db_connection:
+            cursor = db_connection.cursor()
+            cursor.execute ("INSERT INTO Students (CougarId, Name, Email, Major, Username, PasswordHash)" \
+            " VALUES (%s, %s, %s, %s, %s, %s)", (studentID, firstname + ' ' + lastname, email, major, username, password))
+
+            db_connection.commit()
+            cursor.close()
+            db_connection.close()
+
+        return redirect(url_for('home'))
+   
+    return render_template('register.html')
+

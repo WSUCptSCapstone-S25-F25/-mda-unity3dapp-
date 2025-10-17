@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 import mysql.connector
 
 app = Flask(__name__)
@@ -20,7 +20,7 @@ def get_db_connection():
         return None
     
 # route for home page 
-@app.route('/')
+# @app.route('/')
 @app.route('/home')
 def home():
     return render_template('home.html')
@@ -134,8 +134,35 @@ def register():
             db_connection.commit()
             cursor.close()
             db_connection.close()
-
-        return redirect(url_for('home'))
+            
+            return redirect(url_for('login'))
    
     return render_template('register.html')
 
+
+# route to login
+@app.route('/', methods = ['GET', 'POST'])
+@app.route('/login', methods = ['GET', 'POST'])
+def login():
+
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+  
+        db_connection = get_db_connection()
+
+        if db_connection:
+            cursor = db_connection.cursor(dictionary=True)
+            cursor.execute ("SELECT * FROM Students WHERE Username=%s AND PasswordHash=%s",
+                            (username, password))
+            
+            student = cursor.fetchone()
+
+            if student:
+                return redirect(url_for('home'))
+            
+
+            cursor.close()
+            db_connection.close()
+           
+    return render_template('login.html')

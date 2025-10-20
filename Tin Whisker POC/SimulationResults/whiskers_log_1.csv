@@ -1,9 +1,0 @@
-WhiskerAmount,,SpawnAreaSizeX (mm),SpawnAreaSizeY (mm),SpawnAreaSizeZ (mm),,BoardSizeX (cm),BoardSizeY (cm),BoardSizeZ (cm)
-100,,2,1,2,,1,0.75,0.02
-LengthMu,LengthSigma,SpawnPositionX (mm),SpawnPositionY (mm),SpawnPositionZ (mm),,BoardPosX (cm),BoardPosY (cm),BoardPosZ (cm)
-5,0.5,0.5,2,0.5,,0,1,0
-WidthMu,WidthSigma
-2,0.15
-SimNumber,SimDuration (sec),xTilt,zTilt
-1,5,-90,0
-

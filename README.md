@@ -1,49 +1,97 @@
-# Metal Whisker Modeling
+# Food Pantry Database – Flask Front-End
 
-## Project summary
-### One-sentence description of the project
-This project involves developing a software tool that enables users to import a 3D model of a printed circuit board (PCB), detect its exposed conductors, simulate the impact of a storm of dislodged metal whiskers on the PCB, and analyze the resulting data.
+## Project Overview
+This project is part of the Voiland Food Pantry Capstone at Washington State University.  
+It provides a local web-based front end to manage the Food Pantry’s database before integration with the main WordPress website.
 
-### Additional information about the project
-Demo Image: ![image](https://github.com/user-attachments/assets/d027bac4-f328-45ee-bd14-6d756e8724a9)
+The system allows pantry staff and volunteers to:
+- View, add, edit, and delete inventory items
+- Validate quantity and expiration date fields
+- Interact with a local MySQL database through a Flask web interface
 
-## Installation
-#### Usage (User)
-Download the executable file for Windows or Mac and run (found here on GitHub under Releases).
 
-### Prerequisites (Developer)
-* Unity (version 2021.3.21f1 or newer)
-Installation Steps (Developer)
-* Clone the repository with 'git clone https://github.com/WSUCptSCapstone-S24-F24/-mda-unity3dapp-.git'
-* Install Unity Hub from <a href=https://unity.com/download target="_blank" rel="noopener noreferrer">this link</a>
-* Open Unity Hub and click on 'Add'
-* Navigate to the folder with the cloned repository and find and open the folder labeled 'Tin Whisker POC'
+### Technologies Used
+- Python Flask – web framework for the front-end interface  
+- MySQL – relational database for persistent storage  
+- mysql-connector-python – library for connecting Flask to MySQL  
 
-### Installation Steps
-* Clone the repository with 'git clone https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-.git'
-* Using Unity open folder 'Tin Whisker POC' from the cloned repository.
-  
-## Functionality
-Load 3D Models of PCBs: Import and visualize 3D models of PCBs within the Unity environment.
+This front end serves as a testing and validation tool for the local database, ensuring it functions correctly before integration with the WordPress website managed by the partner team.
 
-Identify Exposed Conductors: Detect and highlight the exposed conductive areas on the PCB.
+---
 
-Simulate Metal Whisker Storms: Simulate the random distribution and landing of detached metal whiskers on the PCB surface.
+## Prerequisites
 
-Analyze Results: Record and analyze data from the simulation to assess the potential impact of metal whiskers on the PCB's functionality.
+### 1. Python 3
+If not installed: 
+``` bash
+> winget install Python.Python.3 
+```
 
-The tool is intended to assist engineers and researchers in understanding and mitigating the risks associated with metal whiskers in electronic systems. It provides a user-friendly interface for running simulations and visualizing outcomes, making it a valuable resource for studying this phenomenon.
+### 2. MySQL 8.0 server 
+If not installed:
 
-## Contributing
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
+Download from: https://dev.mysql.com/downloads/mysql/ 
 
-## Additional Documentation
-### Needs Updates
-* [Sprint reports](https://docs.google.com/document/d/1Vkg0mpPR8kd1nD_sDHZ4S4DgOMr4sNbrKmMk6uXvxos/edit?usp=sharing)
+### 3.Flask
+If not installed: 
+``` bash
+> pip install flask
+```
 
-## License
-* [LICENSE](LICENSE.txt)
+### 4.  MySQL Connector 
+If not installed: 
+``` bash
+> pip install flask mysql-connector-python
+```
+
+## Running  App
+- Go to App directory and open terminal.
+- In terminal run:
+``` bash
+\Fiz Project\App> python -m flask run
+```
+- Open in browser: http://127.0.0.1:5000/
+
+
+## File Structure and Explanations
+
+``` bash
+App/
+│
+├── pycache/ # Compiled Python files
+│
+├── DB Files/ # Database schema and seed data
+│ ├── schema.sql
+│ └── seed_data.sql
+│
+├── static/ # Static files (CSS, JS, images)
+│
+├── templates/ # HTML templates
+│ ├── add_item.html
+│ ├── edit_item.html
+│ ├── home.html
+│ └── inventory.html
+│
+├── app.py # Main Flask application
+│
+└── README.md # Project documentation
+```
+
+## Future Improvements
+Add support for student visits and volunteer management 
+- Implement user authentication (volunteer/admin login)  
+- Integrate barcode / QR scanner support  
+- Generate inventory reports (e.g., low-stock or expired items)  
+- Enable automatic export to WordPress database
+
+## Credits
+Developed by the Database Team for the  
+Voiland Food Pantry Project – WSU Capstone (CPTS 423)  
+
+
+
+
+ 
+
+
+

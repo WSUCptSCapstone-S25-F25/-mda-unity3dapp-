@@ -116,8 +116,7 @@ def delete_item(item_id):
 @app.route('/register', methods = ['GET', 'POST'])
 def register():
     if request.method == 'POST':
-        firstname = request.form['firstname']
-        lastname = request.form['lastname']
+        name = request.form['name']
         email = request.form['email']
         studentID = request.form['studentID']
         major = request.form['major']
@@ -129,13 +128,13 @@ def register():
         if db_connection:
             cursor = db_connection.cursor()
             cursor.execute ("INSERT INTO Students (CougarId, Name, Email, Major, Username, PasswordHash)" \
-            " VALUES (%s, %s, %s, %s, %s, %s)", (studentID, firstname + ' ' + lastname, email, major, username, password))
+            " VALUES (%s, %s, %s, %s, %s, %s)", (studentID, name, email, major, username, password))
 
             db_connection.commit()
             cursor.close()
             db_connection.close()
             
-            return redirect(url_for('login'))
+            return redirect(url_for('students'))
    
     return render_template('register.html')
 
@@ -181,3 +180,47 @@ def students():
         db_connection.close()
 
     return render_template('students.html', students = students)
+
+# route to edit student info
+@app.route('/edit_student/<int:student_id>', methods = ['GET', 'POST'])
+def edit_student(student_id):
+    db_connection = get_db_connection()
+    cursor = db_connection.cursor(dictionary=True)
+
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        studentID = request.form['studentID']
+        major = request.form['major']
+        username = request.form['username']
+        password = request.form['password']
+
+        cursor.execute ("UPDATE Students SET CougarId=%s, Name=%s, Email=%s, Major=%s, Username=%s, PasswordHash=%s WHERE StudentId=%s",
+                        (studentID, name, email, major, username, password, student_id))
+        
+
+        db_connection.commit()
+        cursor.close()
+        db_connection.close()
+        return redirect(url_for('students'))
+    
+    cursor.execute("SELECT * FROM Students WHERE StudentId=%s", (student_id,))
+    student = cursor.fetchone()
+    cursor.close()
+    db_connection.close()
+
+    return render_template('edit_student.html', student=student)
+
+# route to delete an student
+@app.route('/delete_student/<int:student_id>', methods = ['GET'])
+def delete_student(student_id):
+
+    db_connection = get_db_connection()
+    cursor = db_connection.cursor()
+
+    cursor.execute ("DELETE FROM Students WHERE StudentId = %s", (student_id,))
+    db_connection.commit()
+    cursor.close()
+    db_connection.close()
+
+    return redirect(url_for('students'))

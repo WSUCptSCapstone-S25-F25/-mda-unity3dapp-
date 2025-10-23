@@ -5,17 +5,16 @@
     </head>
 
     <body>
-        <h2> Register </h2>
+        <h2> Add Student </h2>
         <form method="POST">
-            Firstname: <input type="text" name="firstname" required> <br>
-            Lastname: <input type="text" name="lastname"  required> <br>
+            Name: <input type="text" name="name" required> <br>
             Email: <input type="email" name="email"  required> <br>
             WSU ID: <input type="number" name="studentID"  required> <br>
             Major: <input type="text" name="major"  required> <br>
             Username: <input type="text" name="username"  required> <br>
             Password: <input type="password" name="password"  required> <br>
             
-            <button type="submit">REGISTER</button>
+            <button type="submit">SUBMIT</button>
             <p> Already Registered? <a href="{{ url_for ('login') }}"> Login </a></p>
 
         </form>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Edit Student
+        </title>
+    </head>
+
+    <body> <h1>Editing Student {{ student.Name }} Info </h1>
+        <form method="post">
+            Name: <input type="text" name="name" value="{{ student.Name }}" required> <br>
+            Email: <input type="email" name="email" value="{{ student.Email }}"  required> <br>
+            WSU ID: <input type="number" name="studentID" value="{{ student.CougarId }}"  required> <br>
+            Major: <input type="text" name="major" value="{{ student.Major }}"  required> <br>
+            Username: <input type="text" name="username" value="{{ student.Username }}"  required> <br>
+            Password: <input type="password" name="password" value="{{ student.PasswordHash }}"  required> <br>
+            <button type="submit">SAVE</button>
+            <a href = "{{ url_for ('students') }}"> <button type="button"> CANCEL </button> </a>
+        </form>
+    </body>
+    
+</html>

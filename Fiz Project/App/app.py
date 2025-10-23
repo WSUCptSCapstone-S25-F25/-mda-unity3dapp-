@@ -20,7 +20,7 @@ def get_db_connection():
         return None
     
 # route for home page 
-# @app.route('/')
+@app.route('/')
 @app.route('/home')
 def home():
     return render_template('home.html')
@@ -141,7 +141,7 @@ def register():
 
 
 # route to login
-@app.route('/', methods = ['GET', 'POST'])
+# @app.route('/', methods = ['GET', 'POST'])
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
 
@@ -166,3 +166,18 @@ def login():
             db_connection.close()
            
     return render_template('login.html')
+
+# route to view students
+@app.route('/students')
+def students():
+    db_connection = get_db_connection()
+    students = []
+
+    if db_connection:
+        cursor = db_connection.cursor(dictionary = True)
+        cursor.execute ("SELECT * FROM Students")
+        students = cursor.fetchall()
+        cursor.close()
+        db_connection.close()
+
+    return render_template('students.html', students = students)

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Register Admin</title>
+    </head>
+
+    <body>
+        <h2> Registering Admin </h2>
+        <form method="POST">
+            Name: <input type="text" name="name" required> <br>
+            Email: <input type="email" name="email"  required> <br>
+            Phone: <input type="number" name="phone"  required> <br>
+            Username: <input type="text" name="username"  required> <br>
+            Password: <input type="password" name="password"  required> <br>
+            
+            <button type="submit">REGISTER</button>
+            <p> Already Registered? <a href="{{ url_for ('admins') }}"> Login </a></p>
+
+        </form>
+
+    </body>
+</html>

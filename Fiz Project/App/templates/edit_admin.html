@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Edit Admin
+        </title>
+    </head>
+
+    <body> <h1>Editing Admin {{ admin.Name }} Info </h1>
+        <form method="post">
+            Name: <input type="text" name="name" value="{{ admin.Name }}" required> <br>
+            Email: <input type="email" name="email" value="{{ admin.Email }}"  required> <br>
+            Phone: <input type="number" name="phone" value="{{ admin.Phone }}"  required> <br>
+            Username: <input type="text" name="username" value="{{ admin.Username }}"  required> <br>
+            Password: <input type="password" name="password" value="{{ admin.PasswordHash }}"  required> <br>
+            <button type="submit">SAVE</button>
+            <a href = "{{ url_for ('admins') }}"> <button type="button"> CANCEL </button> </a>
+        </form>
+    </body>
+    
+</html>

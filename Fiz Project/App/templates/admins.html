@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Admins </title>
+    </head>
+
+    <body> <h1> Admin List: </h1>
+        <table border="1"> 
+            <tr>
+                <th>ID</th> <th>Name</th> <th>Email</th> <th>Phone</th> 
+                <th>Username</th> <th>Password</th> <th>Actions</th>
+            </tr>
+            
+            {% for admin in admins %}
+            <tr>
+                <td> {{ admin.AdminId }} </td>
+                <td> {{ admin.Name }} </td>
+                <td> {{ admin.Email }} </td>
+                <td> {{ admin.Phone }} </td>
+                <td> {{ admin.Username }} </td>
+                <td> {{ admin.PasswordHash }} </td>
+
+                <td>
+                    <a href = "{{ url_for ('edit_admin', admin_id=admin.AdminId) }}"> Edit</a>
+                </td>
+
+                <td>
+                    <a href = "{{ url_for ('delete_admin', admin_id=admin.AdminId) }}" 
+                    onclick="return confirm( 'Delete {{ admin.Name }} ? ')" > Delete</a>
+                </td>
+
+            </tr>
+            {% endfor %}
+
+        </table>
+
+        <li><a href = "{{ url_for ('register_admin') }}"> Add Admin</a> </li>
+        <li><a href = "{{ url_for ('home') }}"> Back </a></li>
+    </body>
+
+</html>

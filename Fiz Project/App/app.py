@@ -224,3 +224,87 @@ def delete_student(student_id):
     db_connection.close()
 
     return redirect(url_for('students'))
+
+
+# route to view admins
+@app.route('/admins')
+def admins():
+    db_connection = get_db_connection()
+    admins = []
+
+    if db_connection:
+        cursor = db_connection.cursor(dictionary = True)
+        cursor.execute ("SELECT * FROM Admins")
+        admins = cursor.fetchall()
+        cursor.close()
+        db_connection.close()
+
+    return render_template('admins.html', admins = admins)
+
+# route to register
+@app.route('/register_admin', methods = ['GET', 'POST'])
+def register_admin():
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        phone = request.form['phone']
+        username = request.form['username']
+        password = request.form['password']
+
+        db_connection = get_db_connection()
+
+        if db_connection:
+            cursor = db_connection.cursor()
+            cursor.execute ("INSERT INTO Admins (Name, Email, Phone, Username, PasswordHash)" \
+            " VALUES (%s, %s, %s, %s, %s)", (name, email, phone, username, password))
+
+            db_connection.commit()
+            cursor.close()
+            db_connection.close()
+            
+            return redirect(url_for('admins'))
+   
+    return render_template('register_admin.html')
+
+# route to edit admin info
+@app.route('/edit_admin/<int:admin_id>', methods = ['GET', 'POST'])
+def edit_admin(admin_id):
+    db_connection = get_db_connection()
+    cursor = db_connection.cursor(dictionary=True)
+
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        phone = request.form['phone']
+        username = request.form['username']
+        password = request.form['password']
+
+        cursor.execute ("UPDATE Admins SET Name=%s, Email=%s, Phone=%s, Username=%s, PasswordHash=%s WHERE AdminId=%s",
+                        (name, email, phone, username, password, admin_id))
+        
+
+        db_connection.commit()
+        cursor.close()
+        db_connection.close()
+        return redirect(url_for('admins'))
+    
+    cursor.execute("SELECT * FROM Admins WHERE AdminId=%s", (admin_id,))
+    admin = cursor.fetchone()
+    cursor.close()
+    db_connection.close()
+
+    return render_template('edit_admin.html', admin=admin)
+
+# route to delete an admin
+@app.route('/delete_admin/<int:admin_id>', methods = ['GET'])
+def delete_admin(admin_id):
+
+    db_connection = get_db_connection()
+    cursor = db_connection.cursor()
+
+    cursor.execute ("DELETE FROM admins WHERE AdminId = %s", (admin_id,))
+    db_connection.commit()
+    cursor.close()
+    db_connection.close()
+
+    return redirect(url_for('admins'))

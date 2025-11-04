@@ -48,13 +48,13 @@ INSERT INTO Volunteers (StudentId, Phone) VALUES
 -- 4. Items Table (Inventory)
 -- (Includes one item nearing expiration for reporting functionality)
 -- -----------------------------------------
-INSERT INTO Items (Name, Category, Quantity, ExpDate, Barcode) VALUES
-    ('Canned Beans', 'Canned Goods', 50, '2026-06-30', '001122334455'),
-    ('Pasta Noodles', 'Dry Goods', 35, '2027-01-15', '002233445566'),
-    ('Toilet Paper (4pk)', 'Hygiene', 20, '2028-12-31', '003344556677'),
-    ('Box of Cereal', 'Breakfast', 40, '2025-05-10', '004455667788'),
-    ('Peanut Butter', 'Spreads', 25, '2026-03-01', '005566778899'),
-    ('Toothpaste', 'Hygiene', 15, '2025-01-01', '006677889900'); -- Near Expiry
+INSERT INTO Items (Name, Category, Quantity, Weight, ExpDate, UPC, Comment) VALUES
+    ('Canned Beans', 'Canned Goods', 50, 12.5, '2026-06-30', '001122334455', "New Brand"),
+    ('Pasta Noodles', 'Dry Goods', 35, 0.23, '2027-01-15', '002233445566', " "),
+    ('Toilet Paper (4pk)', 'Hygiene', 20, 2.7, '2028-12-31', '003344556677', " "),
+    ('Box of Cereal', 'Breakfast', 40, 6.11, '2025-05-10', '004455667788', "Low stock"),
+    ('Peanut Butter', 'Spreads', 25, 3.92, '2026-03-01', '005566778899', " "),
+    ('Toothpaste', 'Hygiene', 15, 2.31, '2025-01-01', '006677889900', "Expiring soon"); -- Near Expiry
 
 -- -----------------------------------------
 -- 5. Shifts Table

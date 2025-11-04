@@ -7,8 +7,10 @@ CREATE TABLE Items (
     Name VARCHAR(100) NOT NULL,
     Category VARCHAR(100) NOT NULL,
     Quantity INT NOT NULL DEFAULT 0,
+    Weight Decimal (5,2),
     ExpDate DATE,
-    Barcode VARCHAR(255) UNIQUE
+    UPC VARCHAR(255) UNIQUE,
+    Comment TEXT
 );
 
 -- Table for students
@@ -28,6 +30,7 @@ CREATE TABLE Volunteers (
     VolunteerId INT AUTO_INCREMENT PRIMARY KEY,
     StudentId INT NOT NULL,
     Phone VARCHAR(100) NOT NULL,
+    Approved BOOLEAN DEFAULT FALSE,
     FOREIGN KEY (StudentId) REFERENCES Students(StudentId)
         ON DELETE CASCADE
 );

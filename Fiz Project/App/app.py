@@ -312,6 +312,115 @@ def delete_admin(admin_id):
 
     return redirect(url_for('admins'))
 
+# route to view shifts
+@app.route('/shifts')
+def shifts():
+    db_connection = get_db_connection()
+    shifts = []
+
+    if db_connection:
+        cursor = db_connection.cursor(dictionary = True)
+        cursor.execute ("SELECT * FROM Shifts")
+        shifts = cursor.fetchall()
+        
+        # Format date and time objects for display in the template
+        for shift in shifts:
+            if shift['ShiftDate']:
+                shift['ShiftDate'] = shift['ShiftDate'].strftime('%Y-%m-%d')
+            if shift['StartTime']:
+                shift['StartTime'] = shift['StartTime'].strftime('%H:%M')
+            if shift['EndTime']:
+                shift['EndTime'] = shift['EndTime'].strftime('%H:%M')
+
+        cursor.close()
+        db_connection.close()
+
+    return render_template('shifts.html', shifts = shifts)
+
+# route to add a shift
+@app.route('/add_shift', methods = ['GET', 'POST'])
+def add_shift():
+    if request.method == 'POST':
+        shift_date = request.form['shift_date']
+        start_time = request.form['start_time']
+        end_time = request.form['end_time']
+
+        db_connection = get_db_connection()
+
+        if db_connection:
+            cursor = db_connection.cursor()
+            cursor.execute ("INSERT INTO Shifts (ShiftDate, StartTime, EndTime)" \
+            " VALUES (%s, %s, %s)", (shift_date, start_time, end_time))
+
+            db_connection.commit()
+            cursor.close()
+            db_connection.close()
+
+        return redirect(url_for('shifts'))
+
+    return render_template('add_shift.html')
+
+# route to edit shift
+@app.route('/edit_shift/<int:shift_id>', methods = ['GET', 'POST'])
+def edit_shift(shift_id):
+    db_connection = get_db_connection()
+    cursor = db_connection.cursor(dictionary=True)
+
+    if request.method == 'POST':
+        shift_date = request.form['shift_date']
+        start_time = request.form['start_time']
+        end_time = request.form['end_time']
+
+        cursor.execute ("UPDATE Shifts SET ShiftDate=%s, StartTime=%s, EndTime=%s WHERE ShiftId=%s",
+                        (shift_date, start_time, end_time, shift_id))
+        
+        db_connection.commit()
+        cursor.close()
+        db_connection.close()
+        return redirect(url_for('shifts'))
+    
+    # GET request: fetch the shift data
+    cursor.execute("SELECT * FROM Shifts WHERE ShiftId=%s", (shift_id,))
+    shift = cursor.fetchone()
+    
+    # Format date and time objects for the form fields
+    if shift:
+        if shift['ShiftDate']:
+            shift['ShiftDate'] = shift['ShiftDate'].strftime('%Y-%m-%d')
+        if shift['StartTime']:
+            # Convert timedelta or time object to HH:MM string
+            shift['StartTime'] = str(shift['StartTime']).split('.')[0]
+            if len(shift['StartTime']) > 5: # Handle full timedelta string like '1 day, 9:00:00'
+                 shift['StartTime'] = shift['StartTime'][-8:-3] # Get '09:00'
+            else: # Handle 'HH:MM:SS'
+                 shift['StartTime'] = shift['StartTime'][:5]
+                 
+        if shift['EndTime']:
+            shift['EndTime'] = str(shift['EndTime']).split('.')[0]
+            if len(shift['EndTime']) > 5:
+                 shift['EndTime'] = shift['EndTime'][-8:-3]
+            else:
+                 shift['EndTime'] = shift['EndTime'][:5]
+
+    cursor.close()
+    db_connection.close()
+
+    return render_template('edit_shift.html', shift=shift)
+
+# route to delete a shift
+@app.route('/delete_shift/<int:shift_id>', methods = ['GET'])
+def delete_shift(shift_id):
+
+    db_connection = get_db_connection()
+    cursor = db_connection.cursor()
+
+    cursor.execute ("DELETE FROM Shifts WHERE ShiftId = %s", (shift_id,))
+    db_connection.commit()
+    cursor.close()
+    db_connection.close()
+
+    return redirect(url_for('shifts'))
+
 # route to view volunteers
 @app.route('/volunteers')
 def volunteers():

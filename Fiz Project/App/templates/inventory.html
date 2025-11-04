@@ -7,8 +7,8 @@
     <body> <h1> Items: </h1>
         <table border="1"> 
             <tr>
-                <th>ID</th> <th>Name</th> <th>Category</th> <th>Quantity</th> <th>Exp Date</th>
-                <th>Actions</th>
+                <th>ID</th> <th>Name</th> <th>Category</th> <th>Quantity</th> <th>Weight</th>
+                <th>Exp Date</th> <th>Comment</th> <th>Actions</th>
             </tr>
             
             {% for item in items %}
@@ -17,7 +17,9 @@
                 <td> {{ item.Name }} </td>
                 <td> {{ item.Category }} </td>
                 <td> {{ item.Quantity }} </td>
+                <td> {{ item.Weight }} </td>
                 <td> {{ item.ExpDate }} </td>
+                <td> {{ item.Comment }} </td>
 
                 <td>
                     <a href = "{{ url_for ('edit_item', item_id=item.ItemId) }}"> Edit</a>

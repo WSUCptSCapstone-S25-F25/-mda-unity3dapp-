@@ -11,8 +11,9 @@
             Name: <input type="text" name="name" required> <br>
             Category: <input type="text" name="category"  required> <br>
             Quantity: <input type="number" name="quantity"  required> <br>
+            Weight: <input type="number" name="weight" step="0.01"  required> <br>
             Expiration Date: <input type="date" name="exp_date"  required> <br>
-            Barcode: <input type="text" name="barcode" > <br>
+            UPC: <input type="text" name="barcode" > <br>
             <button type="submit">ADD ITEM</button>
             <a href = "{{ url_for ('inventory') }}"> <button type="button"> CANCEL </button> </a>
         </form>

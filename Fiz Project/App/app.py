@@ -47,6 +47,7 @@ def add_item():
         name = request.form['name']
         category = request.form['category']
         quantity = request.form['quantity']
+        weight = request.form['weight']
         exp_date = request.form['exp_date']
         barcode = request.form['barcode'] or None
 
@@ -54,8 +55,8 @@ def add_item():
 
         if db_connection:
             cursor = db_connection.cursor()
-            cursor.execute ("INSERT INTO Items (Name, Category, Quantity, ExpDate, Barcode)" \
-            " VALUES (%s, %s, %s, %s, %s)", (name, category, quantity, exp_date, barcode))
+            cursor.execute ("INSERT INTO Items (Name, Category, Quantity, Weight, ExpDate, UPC, Comment)" \
+            " VALUES (%s, %s, %s, %s, %s, %s, %s)", (name, category, quantity, weight, exp_date, barcode, " "))
 
             db_connection.commit()
             cursor.close()
@@ -75,10 +76,12 @@ def edit_item(item_id):
         name = request.form['name']
         category = request.form['category']
         quantity = request.form['quantity']
+        weight = request.form['weight']
         exp_date = request.form['exp_date']
+        comment = request.form['comment']
 
-        cursor.execute ("UPDATE Items SET Name=%s, Category=%s, Quantity=%s, ExpDate=%s WHERE ItemId=%s",
-                        (name, category, quantity, exp_date, item_id))
+        cursor.execute ("UPDATE Items SET Name=%s, Category=%s, Quantity=%s, Weight=%s, ExpDate=%s, Comment=%s WHERE ItemId=%s",
+                        (name, category, quantity, weight, exp_date, comment, item_id))
         
 
         db_connection.commit()

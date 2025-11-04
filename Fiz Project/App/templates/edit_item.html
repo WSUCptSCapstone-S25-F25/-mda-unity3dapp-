@@ -11,7 +11,9 @@
             Name: <input type="text" name="name" value="{{ item.Name }}" required> <br>
             Category: <input type="text" name="category" value="{{ item.Category }}"  required> <br>
             Quantity: <input type="number" name="quantity" value="{{ item.Quantity }}"  required> <br>
+            Weight: <input type="number" name="weight" step="0.01" value="{{ item.Weight }}"  required> <br>
             Expiration Date: <input type="date" name="exp_date" value="{{ item.ExpDate }}"  required> <br>
+            Comment: <input type="text" name="comment" value="{{ item.Comment }}">
             <button type="submit">Save</button>
             <a href = "{{ url_for ('inventory') }}"> <button type="button"> CANCEL </button> </a>
         </form>

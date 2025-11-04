@@ -311,3 +311,19 @@ def delete_admin(admin_id):
     db_connection.close()
 
     return redirect(url_for('admins'))
+
+# route to view volunteers
+@app.route('/volunteers')
+def volunteers():
+    db_connection = get_db_connection()
+    volunteers = []
+
+    if db_connection:
+        cursor = db_connection.cursor(dictionary = True)
+        cursor.execute ("SELECT volunteer.VolunteerId, volunteer.Phone, volunteer.Approved, student.CougarId, student.StudentId, student.Name, student.Major, " \
+        "student.Email, student.Username, student.PasswordHash FROM Volunteers volunteer JOIN Students student ON volunteer.StudentId = student.StudentId")
+        volunteers = cursor.fetchall()
+        cursor.close()
+        db_connection.close()
+
+    return render_template('volunteers.html', volunteers = volunteers)

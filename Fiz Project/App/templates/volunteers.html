@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Volunteer </title>
+    </head>
+
+    <body> <h1> Volunteer List: </h1>
+        <table border="1"> 
+            <tr>
+                <th>Student ID</th> <th>Cougar ID</th> <th>Name</th> <th>Email</th>  <th>Major</th> 
+                 <th>Phone</th>  <th>Username</th> <th>Password</th>
+            
+            {% for volunteer in volunteers %}
+            <tr>
+                <td> {{ volunteer.StudentId }} </td>
+                <td> {{ volunteer.CougarId }} </td>
+                <td> {{ volunteer.Name }} </td>
+                <td> {{ volunteer.Email }} </td>
+                <td> {{ volunteer.Major }} </td>
+                <td> {{ volunteer.Phone }} </td>
+                <td> {{ volunteer.Username }} </td>
+                <td> {{ volunteer.PasswordHash }} </td>
+                
+
+            </tr>
+            {% endfor %}
+
+        </table>
+
+        <li><a href = "{{ url_for ('home') }}"> Back </a></li>
+    </body>
+
+</html>

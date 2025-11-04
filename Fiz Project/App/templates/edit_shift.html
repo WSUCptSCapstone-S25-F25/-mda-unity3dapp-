@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Edit Shift
+        </title>
+    </head>
+
+    <body> <h1>Editing Shift</h1>
+        <form method="post">
+            Shift Date: <input type="date" name="shift_date" value="{{ shift.ShiftDate }}" required> <br>
+            Start Time: <input type="time" name="start_time" value="{{ shift.StartTime }}"  required> <br>
+            End Time: <input type="time" name="end_time" value="{{ shift.EndTime }}"  required> <br>
+            
+            <button type="submit">SAVE</button>
+            <a href = "{{ url_for ('shifts') }}"> <button type="button"> CANCEL </button> </a>
+        </form>
+    </body>
+    
+</html>

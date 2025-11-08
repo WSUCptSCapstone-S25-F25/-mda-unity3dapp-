@@ -89,3 +89,35 @@ The website team emphasized the need to define a clear data exchange structure b
   <li>Schedule the planned on-site pantry visit during mid-October for system observation.</li>
 </ul>
 
+<h2>Agenda (<em>10/29/2025</em>)</h2>
+<ul>
+  <li>Review MVP demo from the website team.</li>
+  <li> Confirm required fields and workflow for inventory scanning system.</li>
+  <li> Clarify expectations for monthly usage and inventory reports.</li>
+</ul>
+
+<h2>Minutes</h2>
+<p>
+A joint meeting was held with the database team, website team, and clients Maynard Siev, Gary Offerdahl and Lisa Carmack. The website team presented an MVP interface built using JavaScript and running locally. The prototype showed the use of a barcode scanner to manage inventory: when an item is scanned, the system either updates its quantity and weight if it already exists, or prompts the user to enter details for a new item.
+
+Mayard commented that the platform has not been finalized and they are still evaluating whether the project will be hosted through a university-supported domain, a separate domain or run locally on a computer. Maynard suggested we should include tracking pantry usage by student academic majors and generating a monthly system report summarizing key data such as student visits, inventory flow, and volunteer activity. 
+
+<h2>Retrospective Summary</h2>
+
+<h3>This went well:</h3>
+<ul>
+  <li>Reviewed and understood the scanner workflow through the MVP demonstration.</li>
+  <li>Clarified expectations for automated reporting and demographic tracking.</li>
+</ul>
+
+<h3>This needs improvement:</h3>
+<ul>
+  <li>Database schema needs to incorporate additional fields such as weight and optional comments.</li>
+  <li>Need a plan for the structure and delivery of the monthly reporting feature.</li>
+</ul>
+
+<h3>Changes to implement ASAP:</h3>
+<ul>
+  <li> Add weight and optional comment fields to the Items table.</li>
+  <li> Draft an outline or prototype for monthly reporting feature (e.g., CSV export or scheduled script) </li>
+</ul>

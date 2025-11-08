@@ -23,7 +23,8 @@ ALTER TABLE ItemsTaken AUTO_INCREMENT = 1;
 -- 1. Admins Table
 -- -----------------------------------------
 INSERT INTO Admins (Name, Email, Phone, Username, PasswordHash) VALUES
-    ('Maynard Siev', 'maynard.siev@wsu.edu', '509-555-0000', 'maynard', 'password123');
+    ('Maynard Siev', 'maynard.siev@wsu.edu', '509-555-0000', 'maynard', 'password123'),
+    ('admin', 'admin@email.com', '000-000-000', 'admin', "password");
 
 -- -----------------------------------------
 -- 2. Students Table

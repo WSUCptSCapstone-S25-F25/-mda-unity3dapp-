@@ -1,7 +1,9 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 import mysql.connector
+import secrets
 
 app = Flask(__name__)
+app.secret_key = secrets.token_hex(16)
 
 
 db_config = {
@@ -23,7 +25,8 @@ def get_db_connection():
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template('home.html')
+    user = session.get('user', {'type': 'guest'})
+    return render_template('home.html', user=user)
 
 # route for inventory
 @app.route('/inventory')
@@ -37,8 +40,9 @@ def inventory():
         items = cursor.fetchall()
         cursor.close()
         db_connection.close()
+        user = session.get('user', {'type': 'guest'})
 
-    return render_template('inventory.html', items = items)
+    return render_template('inventory.html', items = items, user = user)
 
 # route to add an item
 @app.route('/add_item', methods = ['GET', 'POST'])
@@ -155,19 +159,36 @@ def login():
 
         if db_connection:
             cursor = db_connection.cursor(dictionary=True)
-            cursor.execute ("SELECT * FROM Students WHERE Username=%s AND PasswordHash=%s",
-                            (username, password))
+
+            cursor.execute ("SELECT * FROM Admins WHERE Username=%s",
+                            (username, ))
+            
+            admin = cursor.fetchone()
+
+            if admin and admin['PasswordHash'] == password:
+                session['user'] = {'id': admin['AdminId'], 'username': admin['Username'], 'type': 'admin'}
+
+                return redirect(url_for('home'))
+
+            cursor.execute ("SELECT * FROM Students WHERE Username=%s",
+                            (username, ))
             
             student = cursor.fetchone()
+            if student and student['PasswordHash'] == password:
+                session['user'] = {'id': student['AdminId'], 'username': student['Username'], 'type': 'student'}
 
-            if student:
                 return redirect(url_for('home'))
-            
 
             cursor.close()
             db_connection.close()
            
     return render_template('login.html')
+
+# route to logout
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('home'))
 
 # route to view students
 @app.route('/students')

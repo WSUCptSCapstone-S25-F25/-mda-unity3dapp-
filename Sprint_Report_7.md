@@ -1,11 +1,13 @@
-# Sprint 7 Report (10/11/2025 – 11/08/2025)
+# Sprint 7 Report (10/11/2025 – 11/09/2025)
 
 ## What’s New (User Facing)
 
+* **Updated database tables:** New fields such as weight and comments were added to the Items table.
 * **User Authentication:** A full user authentication system has been implemented. Users can now log in, log out, and have their session managed (Issue #72).
 * **Login & Registration:** New pages for user login and student registration have been designed and implemented (Issue #74).
 * **Admin Registration:** A separate, dedicated page for registering new Admin accounts has been created (Issue #76).
 * **User Management Views:** Admin users, once logged in, can now view lists of all registered Students, Volunteers, and Admins in the system (Issue #80).
+* **Implemented CRUD routes:** Added pages and routes to view, edit and delete Students, Admins.
 
 ## Work Summary (Developer Facing)
 
@@ -22,35 +24,31 @@ Finally, key project documentation was completed, including submitting the proje
 ## Unfinished Work
 
 * The primary functional piece remaining is the "Shifts" management system, which includes the routes and pages to view, create, edit, and delete shifts (Issue #78).
-* A dedicated registration page for students to apply as volunteers is still pending (Issue #77).
-* Documentation is still being finalized, including the "Solution Approach" section of the main project report (Issue #71) and an update to the frontend README (Issue #75).
+* Implement volunteer approval workflow and shift management system.
+* Add functionality to generate automatic weekly and monthly reports.
 * The Entity-Relationship Diagram needs to be updated to reflect the latest database schema changes (Issue #86).
 
 ## Completed Issues / User Stories
 
-* **Issue #65:** Update schema tables and seed_data files.
-* **Issue #67:** Update client hours.
-* **Issue #69:** Submit Project Draft.
-* **Issue #70:** Create a README files for frontend.
-* **Issue #72:** Expand frontend: Add user authentication system.
-* **Issue #73:** Modify seed_data file.
-* **Issue #74:** Design Login and Registration Pages.
-* **Issue #76:** Create admin register page.
-* **Issue #79:** Complete and submit poster assignment.
-* **Issue #80:** Implement routes and pages to view students, volunteers and admins.
-* **Issue #81:** Update schema and seed data file.
-* **Issue #82:** Update html files and routes in app.py.
-* **Issue #84:** Update client hours.
+* **Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/71:** Complete and upload solution approach section.
+* **Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/72:** Expand frontend: Add user authentication system.
+* **Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/73:** Modify seed_data file.
+* **Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/74:** Design Login and Registration Pages.
+* **Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/76:** Create admin register page.
+* **Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/79:** Complete and submit poster assignment.
+* **Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/80:** Implement routes and pages to view students, volunteers and admins.
+* **Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/81:** Update schema and seed data file.
+* **Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/82:** Update html files and routes in app.py.
+* **Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/83:** Complete and upload Sprint 7 report.
+* **Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/82:** Update client hours.
+* **Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/85:** Complete and upload sprint demo video.
 
 ## Incomplete Issues / User Stories
 
-* **Issue #71:** Complete and upload solution approach section.
-* **Issue #75:** Update frontend README file.
-* **Issue #77:** Create volunteer register page.
-* **Issue #78:** Implement view, create, edit and delete shifts.
-* **Issue #83:** Complete and upload Sprint 7 report.
-* **Issue #85:** Complete and upload sprint demo video.
-* **Issue #86:** Update Entity-Relationship Diagram.
+* **Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/75:** Update frontend README file.
+* **Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/77:** Create volunteer register page.
+* **Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/78:** Implement view, create, edit and delete shifts.
+* **Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/86:** Update Entity-Relationship Diagram.
 
 ## Code Files for Review
 
@@ -80,3 +78,6 @@ Finally, key project documentation was completed, including submitting the proje
 * Prioritize development of the **Shifts** management functionality (Issue #78) as it's the next major piece of the application.
 * Update all key documentation (ER Diagram, README, and the main report) to reflect the current state of the application.
 * Begin implementing role-based authorization for all Flask routes.
+
+# Sprint Report Video:
+* 

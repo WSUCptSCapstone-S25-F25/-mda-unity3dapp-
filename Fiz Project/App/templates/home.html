@@ -1,33 +1,25 @@
-<!DOCTYPE html>
-<html>
-    <head>
-       <title> Food Pantry DB Testing </title>
-    </head>
+{% extends "base.html" %}
+{% block content %}
+    <ul>
+        {% if user.type == 'admin' %}
+            <p> Hello {{ user.username }}! </p>
+            
+            <li>
+                <a href = "{{ url_for ('inventory') }}"> View Inventory</a>
+            </li>
 
-    <body> <h1> Home Page </h1>
-        <ul>
-            {% if user.type == 'admin' %}
-                <p> Hello {{ user.username }}! </p>
-                <a href="{{ url_for('logout') }}"> Logout</a>
-                <li>
-                    <a href = "{{ url_for ('inventory') }}"> View Inventory</a>
-                </li>
+            <li>
+                <a href = "{{ url_for ('volunteers') }}"> View Volunteers</a>
+            </li>
 
-                <li>
-                    <a href = "{{ url_for ('volunteers') }}"> View Volunteers</a>
-                </li>
-
-                <li>
-                    <a href = "{{ url_for ('shifts') }}"> View Shifts</a>
-                </li>
-            {% else %}
-                <p> Hello there! </p>
-                <li>
-                    <a href = "{{ url_for ('inventory') }}"> View Inventory</a>
-                </li>
-                <a href="{{ url_for('login') }}"> Login as Admin </a>
-            {% endif %}
-        </ul>
-    </body>
-
-</html>
+            <li>
+                <a href = "{{ url_for ('shifts') }}"> View Shifts</a>
+            </li>
+        {% else %}
+            <p> Hello there! </p>
+            <li>
+                <a href = "{{ url_for ('inventory') }}"> View Inventory</a>
+            </li>
+        {% endif %}
+    </ul>
+{% endblock %}

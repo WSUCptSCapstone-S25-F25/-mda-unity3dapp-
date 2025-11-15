@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> WSU Food Pantry </title>
+
+    </head>
+
+    <body>
+        <table> 
+            <tr>
+                <div align="right">
+                    {% if session.get('user')%}
+                        {{ session['user']['username']}} |
+                        <a href="{{ url_for('home')}}"> Home</a> | 
+                        <a href="{{ url_for('logout')}}"> Logout</a>
+                    {% else %}
+                        <a href="{{ url_for('home')}}"> Home </a> |
+                        <a href="{{ url_for('login')}}"> Login </a>
+                    {% endif %}
+                </div>  
+            </tr>
+        </table>
+
+        {% block content %}
+
+        {% endblock %}
+    </body>
+</html>

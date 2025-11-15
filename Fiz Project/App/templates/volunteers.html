@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title> Volunteer </title>
-    </head>
-
-    <body> <h1> Volunteer List: </h1>
+{% extends "base.html" %}
+{% block content %}
+    <ul>
         <table border="1"> 
             <tr>
                 <th>Student ID</th> <th>Cougar ID</th> <th>Name</th> <th>Email</th>  <th>Major</th> 
@@ -28,6 +24,5 @@
         </table>
 
         <li><a href = "{{ url_for ('home') }}"> Back </a></li>
-    </body>
-
-</html>
+    </ul>
+{% endblock %}

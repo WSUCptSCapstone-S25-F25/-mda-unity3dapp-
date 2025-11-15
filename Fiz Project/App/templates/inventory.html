@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title> Inventory </title>
-    </head>
-
-    <body> <h1> Items: </h1>
+{% extends "base.html" %}
+{% block content %}
+    <ul>
         <table border="1"> 
             <tr>
                 <th>ID</th> <th>Name</th> <th>Category</th> <th>Quantity</th> <th>Weight</th>
@@ -44,6 +40,5 @@
             <li><a href = "{{ url_for ('add_item') }}"> Add Item</a> </li>
         {% endif %}
             <li><a href = "{{ url_for ('home') }}"> Back </a></li>
-    </body>
-
-</html>
+    </ul>
+{% endblock %}

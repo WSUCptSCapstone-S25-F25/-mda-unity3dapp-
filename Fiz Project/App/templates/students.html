@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title> Students </title>
-    </head>
-
-    <body> <h1> Student List: </h1>
+{% extends "base.html" %}
+{% block content %}
+    <ul>
         <table border="1"> 
             <tr>
                 <th>ID</th> <th>Name</th> <th>WSU ID</th> <th>Email</th> <th>Major</th>
@@ -37,6 +33,5 @@
 
         <li><a href = "{{ url_for ('register') }}"> Add Student</a> </li>
         <li><a href = "{{ url_for ('home') }}"> Back </a></li>
-    </body>
-
-</html>
+    </ul>
+{% endblock %}

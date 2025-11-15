@@ -175,7 +175,7 @@ def login():
             
             student = cursor.fetchone()
             if student and student['PasswordHash'] == password:
-                session['user'] = {'id': student['AdminId'], 'username': student['Username'], 'type': 'student'}
+                session['user'] = {'id': student['StudentId'], 'username': student['Username'], 'type': 'student'}
 
                 return redirect(url_for('home'))
 

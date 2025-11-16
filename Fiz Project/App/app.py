@@ -175,7 +175,16 @@ def login():
             
             student = cursor.fetchone()
             if student and student['PasswordHash'] == password:
-                session['user'] = {'id': student['StudentId'], 'username': student['Username'], 'type': 'student'}
+
+                cursor.execute ("SELECT * FROM Volunteers WHERE StudentId=%s",
+                            (student['StudentId'], ))
+                volunteer = cursor.fetchone()
+                
+                if volunteer:
+                    session['user'] = {'id': student['StudentId'], 'username': student['Username'], 'type': 'volunteer'}
+
+                else:
+                    session['user'] = {'id': student['StudentId'], 'username': student['Username'], 'type': 'student'}
 
                 return redirect(url_for('home'))
 

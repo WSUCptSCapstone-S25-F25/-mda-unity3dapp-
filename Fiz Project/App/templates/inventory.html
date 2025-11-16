@@ -20,7 +20,7 @@
                 <td> {{ item.ExpDate }} </td>
                 <td> {{ item.Comment }} </td>
 
-                {% if user and user.type == 'admin' %}
+                {% if user and user.type == 'admin' or user and user.type == 'volunteer' %}
                     <td>
                         <a href = "{{ url_for ('edit_item', item_id=item.ItemId) }}"> Edit</a>
                     </td>
@@ -36,7 +36,7 @@
 
         </table>
 
-        {% if user and user.type == 'admin' %}
+        {% if user and user.type == 'admin' or user and user.type == 'volunteer' %}
             <li><a href = "{{ url_for ('add_item') }}"> Add Item</a> </li>
         {% endif %}
             <li><a href = "{{ url_for ('home') }}"> Back </a></li>

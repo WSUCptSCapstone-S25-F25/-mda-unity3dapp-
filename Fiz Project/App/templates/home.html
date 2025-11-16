@@ -7,9 +7,25 @@
             <li>
                 <a href = "{{ url_for ('inventory') }}"> View Inventory</a>
             </li>
+            <li>
+                <a href = "{{ url_for ('students') }}"> View Students</a>
+            </li>
 
             <li>
                 <a href = "{{ url_for ('volunteers') }}"> View Volunteers</a>
+            </li>
+
+            <li>
+                <a href = "{{ url_for ('shifts') }}"> View Shifts</a>
+            </li>
+        {% elif user.type == 'volunteer' %}
+             <p> Hello {{ user.username }}! </p>
+            
+            <li>
+                <a href = "{{ url_for ('inventory') }}"> View Inventory</a>
+            </li>
+            <li>
+                <a href = "{{ url_for ('students') }}"> View Students</a>
             </li>
 
             <li>

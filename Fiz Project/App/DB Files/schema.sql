@@ -29,8 +29,10 @@ CREATE TABLE Students (
 CREATE TABLE Volunteers (
     VolunteerId INT AUTO_INCREMENT PRIMARY KEY,
     StudentId INT NOT NULL,
-    Phone VARCHAR(100) NOT NULL,
-    Approved BOOLEAN DEFAULT FALSE,
+    Approved ENUM('Pending', 'Approved', 'Denied') DEFAULT 'Pending',
+    Statement TEXT,
+    PreferredDays TEXT,
+    AppliedTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (StudentId) REFERENCES Students(StudentId)
         ON DELETE CASCADE
 );

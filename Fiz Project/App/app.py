@@ -26,6 +26,21 @@ def get_db_connection():
 @app.route('/home')
 def home():
     user = session.get('user', {'type': 'guest'})
+
+    if user.get('type') == 'student':
+        db_connection = get_db_connection()
+        cursor = db_connection.cursor(dictionary = True)
+
+        cursor.execute("SELECT * FROM Volunteers WHERE StudentId=%s", (user['id'], ))
+        volunteer = cursor.fetchone()
+        cursor.close()
+        db_connection.close()
+
+        if volunteer:
+            user['volunteer_status'] = volunteer['Approved']
+        else:
+            None
+
     return render_template('home.html', user=user)
 
 # route for inventory
@@ -459,10 +474,47 @@ def volunteers():
 
     if db_connection:
         cursor = db_connection.cursor(dictionary = True)
-        cursor.execute ("SELECT volunteer.VolunteerId, volunteer.Phone, volunteer.Approved, student.CougarId, student.StudentId, student.Name, student.Major, " \
-        "student.Email, student.Username, student.PasswordHash FROM Volunteers volunteer JOIN Students student ON volunteer.StudentId = student.StudentId")
+        cursor.execute ("SELECT volunteer.VolunteerId, volunteer.Approved, volunteer.Statement, volunteer.PreferredShift," \
+        "volunteer.AppliedTime, student.CougarId, student.StudentId, student.Name, student.Major, student.Email, student.Username," \
+        "student.PasswordHash FROM Volunteers volunteer JOIN Students student ON volunteer.StudentId = student.StudentId")
         volunteers = cursor.fetchall()
         cursor.close()
         db_connection.close()
 
     return render_template('volunteers.html', volunteers = volunteers)
+
+# route to apply as volunteer
+@app.route('/volunteer_app', methods=['GET', 'POST'])
+def volunteer_app():
+    user = session.get('user')
+
+    if user['type'] != 'student':
+        return redirect(url_for('home'))
+    
+    db_connection = get_db_connection()
+    cursor = db_connection.cursor(dictionary=True)
+
+    cursor.execute("SELECT * FROM Volunteers WHERE StudentId=%s", (user['id'], ))
+    volunteer = cursor.fetchone()
+
+    if volunteer:
+        cursor.close()
+        db_connection.close()
+        return redirect(url_for('home'))
+
+    if request.method == 'POST':
+        statement = request.form['statement']
+        days = request.form.getlist('preferred_days')
+        preferred_days = ",".join(days)
+
+        cursor.execute("INSERT INTO Volunteers (StudentId, Statement, PreferredDays) VALUES (%s, %s, %s)", (user['id'], statement, preferred_days))
+
+        db_connection.commit()
+        cursor.close()
+        db_connection.close()
+
+        return redirect(url_for('home'))
+
+    cursor.close()
+    db_connection.close()
+    return render_template("volunteer_app.html", user = user)

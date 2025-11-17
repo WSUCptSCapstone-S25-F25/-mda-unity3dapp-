@@ -41,9 +41,9 @@ INSERT INTO Students (CougarId, Name, Email, Major, QRCode, Username, PasswordHa
 -- 3. Volunteers Table
 -- (References StudentId 1 and 2 from above)
 -- -----------------------------------------
-INSERT INTO Volunteers (StudentId, Phone) VALUES
-    (1, '509-555-1111'), -- Alice Smith (StudentId 1) is VolunteerId 1
-    (2, '509-555-2222'); -- Bob Johnson (StudentId 2) is VolunteerId 2
+INSERT INTO Volunteers (StudentId, Statement, PreferredDays, Approved) VALUES
+    (1, 'Excited to help fellow Cougs and give back to community.', 'Monday, Wednesday, Friday', 'Approved'), -- Alice Smith (StudentId 1) is VolunteerId 1
+    (2, 'Want volunteer hours and food pantry experience.', 'Tuesday, Thursday, Sunday', 'Pending'); -- Bob Johnson (StudentId 2) is VolunteerId 2
 
 -- -----------------------------------------
 -- 4. Items Table (Inventory)

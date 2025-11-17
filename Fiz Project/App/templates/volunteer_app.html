@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Volunteer App </title>
+    </head>
+
+    <body>
+        <h2> Volunteer Application Form </h2>
+        <form method="POST">
+            <label for="Statement"> Why would like to volunteer?</label> <br>
+            Statement: <input type="text" name="statement" required> <br>
+
+            <label> Preferred days: </label> <br>
+            <input type="checkbox" name="preferred_days" value="Monday"> Monday <br>
+            <input type="checkbox" name="preferred_days" value="Tuesday"> Tuesday <br>
+            <input type="checkbox" name="preferred_days" value="Wednesday"> Wednesday <br>
+            <input type="checkbox" name="preferred_days" value="Thursday"> Thursday <br>
+            <input type="checkbox" name="preferred_days" value="Friday"> Friday <br>
+            <input type="checkbox" name="preferred_days" value="Sunday"> Sunday <br>
+            </select>
+
+            <button type="submit">SUBMIT</button>
+            <a href = "{{ url_for ('home') }}"> <button type="button"> CANCEL </button> </a>
+
+        </form>
+
+    </body>
+</html>

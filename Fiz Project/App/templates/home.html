@@ -1,40 +1,46 @@
 {% extends "base.html" %}
 {% block content %}
+    <p> Hello {{ user.username if user.type != 'guest' else 'there!' }}!</p>
     <ul>
         {% if user.type == 'admin' %}
-            <p> Hello {{ user.username }}! </p>
             
             <li>
-                <a href = "{{ url_for ('inventory') }}"> View Inventory</a>
+                <a href = "{{ url_for ('inventory') }}"> <button type="button"> View Inventory </button></a>
             </li>
             <li>
-                <a href = "{{ url_for ('students') }}"> View Students</a>
+                <a href = "{{ url_for ('students') }}">  <button type="button">  View Students </button></a>
             </li>
 
             <li>
-                <a href = "{{ url_for ('volunteers') }}"> View Volunteers</a>
+                <a href = "{{ url_for ('volunteers') }}">  <button type="button"> View Volunteers</button> </a>
             </li>
 
             <li>
-                <a href = "{{ url_for ('shifts') }}"> View Shifts</a>
+                <a href = "{{ url_for ('shifts') }}">  <button type="button"> View Shifts</button> </a>
             </li>
-        {% elif user.type == 'volunteer' %}
-             <p> Hello {{ user.username }}! </p>
+        {% elif user.type == 'volunteer' and user.volunteer_status == 'Approved' %}
             
             <li>
-                <a href = "{{ url_for ('inventory') }}"> View Inventory</a>
+                <a href = "{{ url_for ('inventory') }}">  <button type="button"> View Inventory </button> </a>
             </li>
             <li>
-                <a href = "{{ url_for ('students') }}"> View Students</a>
+                <a href = "{{ url_for ('students') }}">  <button type="button"> View Students </button> </a>
             </li>
 
             <li>
-                <a href = "{{ url_for ('shifts') }}"> View Shifts</a>
+                <a href = "{{ url_for ('shifts') }}">  <button type="button">  View Shifts </button></a>
             </li>
+        {% elif user.type == 'student' %}
+            
+            <li>
+                <a href = "{{ url_for ('inventory') }}">  <button type="button">  View Inventory </button></a>
+            </li>
+            {% if not user.volunteer_status %}
+                <a href="{{ url_for('volunteer_app') }}"> Apply to become a volunteer </a>
+            {% endif %}
         {% else %}
-            <p> Hello there! </p>
             <li>
-                <a href = "{{ url_for ('inventory') }}"> View Inventory</a>
+                <a href = "{{ url_for ('inventory') }}">  <button type="button"> View Inventory </button> </a>
             </li>
         {% endif %}
     </ul>

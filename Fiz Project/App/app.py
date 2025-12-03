@@ -181,7 +181,7 @@ def login():
             admin = cursor.fetchone()
 
             if admin and admin['PasswordHash'] == password:
-                session['user'] = {'id': admin['AdminId'], 'username': admin['Username'], 'type': 'admin'}
+                session['user'] = {'id': admin['AdminId'], 'username': admin['Username'], 'name': admin['Name'], 'type': 'admin'}
 
                 return redirect(url_for('home'))
 
@@ -196,10 +196,10 @@ def login():
                 volunteer = cursor.fetchone()
                 
                 if volunteer:
-                    session['user'] = {'id': student['StudentId'], 'username': student['Username'], 'type': 'volunteer'}
+                    session['user'] = {'id': student['StudentId'],  'name': student['Name'], 'username': student['Username'], 'type': 'volunteer'}
 
                 else:
-                    session['user'] = {'id': student['StudentId'], 'username': student['Username'], 'type': 'student'}
+                    session['user'] = {'id': student['StudentId'], 'name': student['Name'], 'username': student['Username'], 'type': 'student'}
 
                 return redirect(url_for('home'))
 
@@ -372,10 +372,20 @@ def shifts():
         for shift in shifts:
             if shift['ShiftDate']:
                 shift['ShiftDate'] = shift['ShiftDate'].strftime('%Y-%m-%d')
+
             if shift['StartTime']:
-                shift['StartTime'] = shift['StartTime'].strftime('%H:%M')
+                s = str(shift['StartTime'])  
+                s = s.split('.')[0]          
+                if 'day' in s:               
+                    s = s.split(',')[-1].strip()
+                shift['StartTime'] = s[:5]   
+
             if shift['EndTime']:
-                shift['EndTime'] = shift['EndTime'].strftime('%H:%M')
+                e = str(shift['EndTime'])
+                e = e.split('.')[0]
+                if 'day' in e:
+                    e = e.split(',')[-1].strip()
+                shift['EndTime'] = e[:5]
 
         cursor.close()
         db_connection.close()
@@ -474,7 +484,7 @@ def volunteers():
 
     if db_connection:
         cursor = db_connection.cursor(dictionary = True)
-        cursor.execute ("SELECT volunteer.VolunteerId, volunteer.Approved, volunteer.Statement, volunteer.PreferredShift," \
+        cursor.execute ("SELECT volunteer.VolunteerId, volunteer.Approved, volunteer.Statement, volunteer.PreferredDays," \
         "volunteer.AppliedTime, student.CougarId, student.StudentId, student.Name, student.Major, student.Email, student.Username," \
         "student.PasswordHash FROM Volunteers volunteer JOIN Students student ON volunteer.StudentId = student.StudentId")
         volunteers = cursor.fetchall()
@@ -482,6 +492,23 @@ def volunteers():
         db_connection.close()
 
     return render_template('volunteers.html', volunteers = volunteers)
+
+# route to view volunteers applications pending
+@app.route('/view_volunteers_app')
+def view_volunteers_app():
+    db_connection = get_db_connection()
+    volunteers = []
+
+    if db_connection:
+        cursor = db_connection.cursor(dictionary = True)
+        cursor.execute ("SELECT volunteer.VolunteerId, volunteer.Approved, volunteer.Statement, volunteer.PreferredDays," \
+        "volunteer.AppliedTime, student.CougarId, student.StudentId, student.Name, student.Major, student.Email, student.Username," \
+        "student.PasswordHash FROM Volunteers volunteer JOIN Students student ON volunteer.StudentId = student.StudentId WHERE volunteer.Approved = 'Pending'")
+        volunteers = cursor.fetchall()
+        cursor.close()
+        db_connection.close()
+
+    return render_template('view_volunteers_app.html', volunteers = volunteers)
 
 # route to apply as volunteer
 @app.route('/volunteer_app', methods=['GET', 'POST'])

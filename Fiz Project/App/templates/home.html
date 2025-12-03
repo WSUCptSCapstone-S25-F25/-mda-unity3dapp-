@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-    <p> Hello {{ user.username if user.type != 'guest' else 'there!' }}!</p>
+    <p> Hello {{ user.name if user.type != 'guest' else 'there!' }}!</p>
     <ul>
         {% if user.type == 'admin' %}
             
@@ -13,6 +13,9 @@
 
             <li>
                 <a href = "{{ url_for ('volunteers') }}">  <button type="button"> View Volunteers</button> </a>
+            </li>
+            <li>
+                <a href = "{{ url_for ('view_volunteers_app') }}">  <button type="button"> View Volunteers Applications</button> </a>
             </li>
 
             <li>

@@ -47,11 +47,11 @@ Finally, multiple bugs were resolved involving shift time formatting, SQL joins,
 * volunteer_app.html: https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/blob/fiz-project/Fiz%20Project/App/templates/volunteer_app.html   
 * view_volunteers_app.html: https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/blob/fiz-project/Fiz%20Project/App/templates/view_volunteers_app.html   
 * inventory.html: https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/blob/fiz-project/Fiz%20Project/App/templates/inventory.html
-*students.html: https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/blob/fiz-project/Fiz%20Project/App/templates/students.html 
-*register.html: https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/blob/fiz-project/Fiz%20Project/App/templates/register.html 
+* students.html: https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/blob/fiz-project/Fiz%20Project/App/templates/students.html 
+* register.html: https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/blob/fiz-project/Fiz%20Project/App/templates/register.html 
 * login.html: https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/blob/fiz-project/Fiz%20Project/App/templates/login.html 
-*home.html: https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/blob/fiz-project/Fiz%20Project/App/templates/home.html 
-*base.html: https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/blob/fiz-project/Fiz%20Project/App/templates/base.html 
+* home.html: https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/blob/fiz-project/Fiz%20Project/App/templates/home.html 
+* base.html: https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/blob/fiz-project/Fiz%20Project/App/templates/base.html 
 * app.py: https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/blob/fiz-project/Fiz%20Project/App/app.py 
 
 

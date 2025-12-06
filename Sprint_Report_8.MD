@@ -33,7 +33,7 @@ Finally, multiple bugs were resolved involving shift time formatting, SQL joins,
 * **Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/89: ** Complete and upload Alpha Prototype Description section.
 * **Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/90: ** Implement role-based access control.
 * **Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/91:  ** Extended login functionality: support volunteer logins.
-* **Issuehttps://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/93:  ** Modify admin view for volunteer and shifts management.
+* **Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/93:  ** Modify admin view for volunteer and shifts management.
 * **Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/94: ** Complete and Upload Sprint 8.
 * **Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/95: ** Upload Final Report.
 * **Issue https://github.com/WSUCptSCapstone-S25-F25/-mda-unity3dapp-/issues/96:  ** Complete Client prototype demo.

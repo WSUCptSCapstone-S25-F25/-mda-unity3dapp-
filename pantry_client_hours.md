@@ -121,3 +121,43 @@ Mayard commented that the platform has not been finalized and they are still eva
   <li> Add weight and optional comment fields to the Items table.</li>
   <li> Draft an outline or prototype for monthly reporting feature (e.g., CSV export or scheduled script) </li>
 </ul>
+
+<h2>Agenda (<em>12/03/2025</em>)</h2>
+<ul>
+  <li>Present the final backend prototype for the Fall 2025 semester.</li>
+  <li> Demonstrate implemented features (inventory management, student accounts, volunteer workflow, admin tools).</li>
+  <li> Confirm handoff expectations for the Spring 2026 development team.</li>
+ <li> Discuss next steps for integration with the website/front-end team.</li>
+</ul>
+
+<h2>Minutes</h2>
+<p>
+A final project demonstration was held with the client, Maynard Siev, to showcase the backend prototype developed this semester. The demo included a walkthrough of the core database-driven functionality: CRUD operations for inventory items, admin and student management, volunteer applications, user-role–based access, and session-based login control. The student, volunteer, and admin views were shown, including the ability for students to submit volunteer applications and for administrators to view them.
+
+The client expressed satisfaction with the progress and the clarity of the implemented functionality. He noted that the system appears organized, intuitive, and aligned with previously discussed requirements. The client also reiterated the importance of handing off the work to the website team, who will continue development next semester. He asked when the backend team plans to share the documentation, schema files, and prototype code so the next team can begin integration work.
+
+<h2>Retrospective Summary</h2>
+
+<h3>This went well:</h3>
+<ul>
+  <li>Demonstrated a functioning end-to-end prototype of all major backend features.</li>
+  <li>Client confirmed the system’s direction aligns with operational needs.</li>
+  <li>Clarified expectations for project handoff to the incoming Spring 2026 development team.</li>
+</ul>
+
+<h3>This needs improvement:</h3>
+<ul>
+  <li>Full volunteer approval/rejection workflow remains unimplemented.</li>
+  <li>Reporting features (monthly/weekly snapshots) still need further development.</li>
+  <li>Integration pathway for the future front-end team requires formal documentation.</li>
+</li>
+
+</ul>
+
+<h3>Changes to implement ASAP:</h3>
+<ul>
+  <li> Finalize and deliver database schema, ER diagram, seed files, and setup instructions.</li>
+  <li> Provide notes on remaining tasks (volunteer approval system, reporting, scanning workflow).</li>
+ <li>Package and transfer the prototype codebase to the next development team.</li>
+</ul>
+
